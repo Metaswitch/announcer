@@ -80,10 +80,10 @@ Ready to contribute? Here's how to set up `announcer` for local development.
    Now you can make your changes locally.
 
 5. When you're done making changes, check that your changes pass flake8 and the
-   tests.
+   tests using tox.
 
     ```shell
-    $ ./lint.sh 
+    $ tox 
     ```
 
 6. Commit your changes (ensuring they are signed-off) and push your branch to GitHub::
@@ -110,7 +110,7 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Tips
 
-To run a subset of tests:
+To run a subset of pytest tests:
 
 ```shell
 $ py.test tests/test_announce.py
