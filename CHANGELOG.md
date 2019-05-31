@@ -8,6 +8,8 @@ version number is tracked in the file `VERSION`.
 
 ## [Unreleased]
 ### Changed
+- Do Docker deploys on tagged builds
+
 ### Added
 
 ## [2.0.0] - 2019-05-31
