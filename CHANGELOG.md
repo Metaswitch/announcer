@@ -8,6 +8,13 @@ version number is tracked in the file `VERSION`.
 
 ## [Unreleased]
 ### Changed
-- Prepare for public release.
+### Added
+
+## [2.0.0] - 2019-05-31
+### Changed
+- First public release! :tada:
 
 ### Added
+
+[Unreleased]: https://github.com/Metaswitch/announcer/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/Metaswitch/announcer/tree/2.0.0
