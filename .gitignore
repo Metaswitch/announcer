@@ -5,3 +5,4 @@ dist/
 announcer.egg-info/
 .mypy_cache/
 __pycache__
+.tox/
