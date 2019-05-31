@@ -1,8 +1,14 @@
 language: python
+services:
+- docker
 python:
 - 3.6
 - 3.5
 - 3.4
+matrix:
+  allow_failures:
+    # Python 3.4 is a little patchy on Travis.
+    - python: 3.4
 install:
 - pip install -U poetry tox-travis
 script: tox
@@ -10,11 +16,12 @@ env:
   global:
   - secure: IJm/UzvVcsRpgg9HAzmbBisif9xR2aPlzARlyUFM/qvgKRZ3fbdxDGQV7Yc7Nqd/rXHm5UcJrKN+YwTFaB0qTLrWaJy6c1cdvpGYji7hK0amckJXN1sUUFA/RgRVJ1tt1/J7HmugKScBeG8Pz7icAxDjEYntGWveEWwTyJEZJ/f6cIvRei9lW0OlD/ejR3qMXY+4DHcPfDllmyuXIfjSX3W4JlrSyOofBduK1sj/3KEj7/yZPw6IAUt2WR5tgiEsb1VuJiMRsl6duk3fp55wS2zCMOwi3V6p5Kuz7ItszJ/wdMrN0jGUl0DdyLTraYt8cRGUaGDFNFp9xeic3O2tNEyOi68YdbmZ+LGzfkEGRhX8XMmYjk5zKehDoX4vx28sSWCCXhaJewbLJXmAGtTvawIPYqRAJ/Z4DunEg0ugIj0m8O1sx26HppHazbFkZCD1zmBO+gxm4k6Tt/kWeP6PB3ZUb4X891L+sXNEL1A1HS+TETprqXQveYIfd4GmRM118jCHjArWjwY0T+sTA9g+XPGghYdHWUEZT1VBkNuJBIJ1ZZILisoCVmtnIXV8T6GG8gx17oxQJS8Bhijdlj1WIHAK310XvI4jI9tukKNIV9LTzG/k+E9lirIZtLMCtG4FqA0ppGJoWXDKsPosgWLzQSZi64BYQRJMehppNgQ/tIg=
   - secure: d4vVq9s/m7tKR1dc1H584HzbvIbmydmBN1KRPn8GKgPVvxbD4g1AlQiPebsxrt/RSk5ZibrnA06WmmpXS0KXDMnNr+fg19fW8ssINyc7l9PBQYWAqIku1dfh5zJySOYKqWKxmGGwgnwNd3/E4NETrat/d9cEc3BNJRIkl1HMjU7bLhb/EU28sydwH5je0zR0HJJym9wSBV3XSgjst7zxMbw2iw22RDa3XQ6d0pVQiGn4n1pzlUJ0LHUCwnPImuayS3o8/sIThIqzNozIOzGrN012qCDmWEpnTe4XtMPZg3n6c2ijs9VaV3S3jCP68NvgNYoO7pptCsCn+jvSKyg4MnB0WVoiW64jbn16N2oaersMEc4k9nh1svHgDUxLRY5u0Mk3/i0XgqBwyMJ2x84cmXCzo9Fe6Y4g+7s11kvOeRtY9pgclzLwsnOjPO6ERNG3vhq91nLJKxdFzVcnEuAhhKThymeN7mC2QXZ0JBMnmy/Z95rj8Rn69P1docRb6WBx6swUpxesNygnU9oyZ9DFF7wPByBcjzFtEax7gl16TWOsouRQyr09gn6dx/sh1mzxokinvc24wES9QLt5GpvVpcD6XuikAaed9+gXMSH6ECZlGM/3QCq4AAUUkWkeczxyRhTFkfUXAe5h1p8FbvbTtvltxbtWj4cwH6kWeWzjJk0=
-
+  - secure: NlEV6HK7ncyFc04x2AwaBCdU5KBBGGnH6L2u6HSML0lEJWCjzTenQ71ORTjAnIoZmauj/nSaf1J9olJoc2bfGMkj3pWi0jdbn45J/LUokLYTyg4nsLZIc6nOdcFPFb+Pes7NPSk6YAFho/S266c4lmqvTiA9jWkzcrWTt5DIslV7Xh3vNeCnw5X1Lmp0vITTo5ZKQGFWQybVXVPpCAs23qGPeMbpBk5s/vD4KUiLOQbD/y2uRJtpt1bm11f7IE/zTOqJQAeY7cbDQhCXSRxjnHzXm7I7m8x5LthKJkv5w2rFLzlSWnBOJRQGdvzKhSH7n/l/uoQPtLoPcqzCg8gJOg4HGQbQDnwx8PiIIcuSwlW3v2a0L7QACrutBg+kro9G42bGw7mgKCO3LYxVCWNUjrx6CwdrTRq2WFmmx8/hSG08AjPadw8+TbYoBMPy8Mo0e5eKUTv8UAsx2SwGwLMi2HwyWwez11SpjqCVFJeiI0vhv79TDGqR/WG/JpEHVkP5IptPL7bzsHTr873WLP/s2Bct9/fmO+nNIApwWBwdTIGCAzDtcqqhrUENjYEp53v7o3+YeTEX06dPpzQjc0RJo69y0LohUQlFWqNOp90w0Lmn8DBSqlJLhpRsDSrZRbKXb23oQTzF3+tgPSp5LHE7CvGE4BKMETHJXQp3MseWzC8=
+  - secure: ZoIg4xIzzpMSl+i317UfOsl0Fw2tTAfgbIcorgyqzxXov3aZne9VLpTAvgH6h6AUfRoxnUWyV4jyCnET3Vjvnjml9M25O2qRVJRPbOCLHlnDJcC7f8Z6DtR2GlexOsCFUlcCJqB4zxY8GB5ePbAWzX2ZrqBzWurIflddGEJzLcEFdvedWUcLgprHp9EXEFlECKZU0wCm8SSfWq0xN4ENgF2S+gANDl4eeN5USHPgZYHBHwh1W2INUGaEINuAjsZZjMHMBBUKhZpdCyoJgUun7ioVTVME7xmTKQp4Iq0F7y5hPZi+M4a7mB+yhN/AsMpNr3HzhjStoJPOaKoIDjIRXU1CqqrcePlV958yq8a0fVNZIa5A6kirSxUNPX8/5CpJ174W0cirVhSRKa/nNWMxuahdrABAy9QAWYkfS1qMHF1gqqBK6VK9rx+d3zXEabHUUN/8aBJaSrNjko8mjmy6UvY26+OJAsAo5MaI6q1R/X4Ipa/9j1/zMAIAMP4ubJj5bjMF1xiAvGXhDMJ+bnfd3/sTZ5Nzzq5/X3EuAQlWNg3Jv5LPfq2QP32h0w65wNfQKIvINj4zFtKMLEzwQIyv6sKebKmR3WEgrg1lHKGiKZQf0+7PqnAI6dbXsxliNHxkWuIwvkU9hmP/zy9Dyup+yq3SnHEdtp6AidATc0dJVxI=
 deploy:
-  - provider: script
-    script: poetry publish --username $PYPI_USER --password $PYPI_PASS --build
-    on:
-      tags: true
-      repo: Metaswitch/announcer
-      python: 3.6
+- provider: script
+  script: bash deploy.sh
+  on:
+    tags: true
+    repo: Metaswitch/announcer
+    python: 3.6
