@@ -8,6 +8,10 @@ version number is tracked in the file `VERSION`.
 
 ## [Unreleased]
 ### Changed
+### Added
+
+## [2.1.0] - 2019-05-31
+### Changed
 - Do Docker deploys on tagged builds
 
 ### Added
@@ -18,5 +22,6 @@ version number is tracked in the file `VERSION`.
 
 ### Added
 
-[Unreleased]: https://github.com/Metaswitch/announcer/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/Metaswitch/announcer/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/Metaswitch/announcer/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/Metaswitch/announcer/tree/2.0.0
