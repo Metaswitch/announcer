@@ -5,6 +5,10 @@ python:
 - 3.6
 - 3.5
 - 3.4
+matrix:
+  allow_failures:
+    # Python 3.4 is a little patchy on Travis.
+    - python: 3.4
 install:
 - pip install -U poetry tox-travis
 script: tox
