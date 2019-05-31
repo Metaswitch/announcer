@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "announcer"
+version = "1.5.0"
+description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack"
+authors = ["Max Dymond <max.dymond@metaswitch.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ['slack']
+
+[tool.poetry.dependencies]
+python = "^3.4"
+requests = "^2.19"
+mistletoe = "^0.7.1"
+typing = "^3.6.4"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.3"
+wheel = "^0.33.4"
+mypy = "^0.701.0"
+yamllint = "^1.15"
+bandit = "^1.6"
+pytest = "^4.5"
+flake8 = "^3.7"
+werkzeug = "^0.15.4"
+pytest-httpserver = "^0.3.0"
+
+[tool.poetry.scripts]
+announce = "announcer.__init__:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
