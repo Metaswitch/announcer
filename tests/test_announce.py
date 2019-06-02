@@ -120,7 +120,7 @@ def test_announce_main(httpserver):
         "--changelogversion", version,
         "--changelogfile", changelog,
         "--projectname", "test_announce1",
-        "--icon_url", icon_url,
+        "--iconurl", icon_url,
         "--username", username
     ]
 
@@ -130,5 +130,5 @@ def test_announce_main(httpserver):
         'username': username}))
 
     with patch.object(sys, 'argv', testargs):
-        with pytest.raises(SystemExit):
-            announcer.main()
+        rc = announcer.main()
+        assert rc == announcer.ScriptRC.SUCCESS
