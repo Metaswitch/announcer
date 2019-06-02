@@ -8,6 +8,8 @@ version number is tracked in the file `VERSION`.
 
 ## [Unreleased]
 ### Changed
+- Add coveralls support
+
 ### Added
 
 ## [2.1.0] - 2019-05-31
