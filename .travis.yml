@@ -9,8 +9,10 @@ matrix:
   allow_failures:
   - python: 3.4
 install:
-- pip install -U poetry tox-travis tomlq
+- pip install -U poetry tox-travis tomlq python-coveralls
 script: tox
+after_success:
+  - coveralls
 env:
   global:
   - secure: IJm/UzvVcsRpgg9HAzmbBisif9xR2aPlzARlyUFM/qvgKRZ3fbdxDGQV7Yc7Nqd/rXHm5UcJrKN+YwTFaB0qTLrWaJy6c1cdvpGYji7hK0amckJXN1sUUFA/RgRVJ1tt1/J7HmugKScBeG8Pz7icAxDjEYntGWveEWwTyJEZJ/f6cIvRei9lW0OlD/ejR3qMXY+4DHcPfDllmyuXIfjSX3W4JlrSyOofBduK1sj/3KEj7/yZPw6IAUt2WR5tgiEsb1VuJiMRsl6duk3fp55wS2zCMOwi3V6p5Kuz7ItszJ/wdMrN0jGUl0DdyLTraYt8cRGUaGDFNFp9xeic3O2tNEyOi68YdbmZ+LGzfkEGRhX8XMmYjk5zKehDoX4vx28sSWCCXhaJewbLJXmAGtTvawIPYqRAJ/Z4DunEg0ugIj0m8O1sx26HppHazbFkZCD1zmBO+gxm4k6Tt/kWeP6PB3ZUb4X891L+sXNEL1A1HS+TETprqXQveYIfd4GmRM118jCHjArWjwY0T+sTA9g+XPGghYdHWUEZT1VBkNuJBIJ1ZZILisoCVmtnIXV8T6GG8gx17oxQJS8Bhijdlj1WIHAK310XvI4jI9tukKNIV9LTzG/k+E9lirIZtLMCtG4FqA0ppGJoWXDKsPosgWLzQSZi64BYQRJMehppNgQ/tIg=

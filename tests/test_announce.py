@@ -1,6 +1,9 @@
 import announcer
 import json
 import os
+import sys
+import pytest
+from unittest.mock import patch
 from werkzeug.wrappers import Request, Response
 from pytest_httpserver import HTTPServer
 
@@ -102,3 +105,30 @@ def test_announce_url(httpserver):
                             icon_url=icon_url,
                             username=username)
     assert rc == announcer.ScriptRC.SUCCESS
+
+
+def test_announce_main(httpserver):
+    """Test the main announce function."""
+    version = "1.0.0"
+    changelog = os.path.join(TEST_DIR, "testannounce1.md")
+    username = "test_announce_url"
+    icon_url = "https://www.gravatar.com/avatar/16514A0927AE04EC8F7916F4C01479F2?s=48"
+
+    testargs = [
+        "announce",
+        "--slackhook", httpserver.url_for("/slack"),
+        "--changelogversion", version,
+        "--changelogfile", changelog,
+        "--projectname", "test_announce1",
+        "--icon_url", icon_url,
+        "--username", username
+    ]
+
+    httpserver.expect_request("/slack").respond_with_handler(verify_dict({
+        'icon_url': icon_url,
+        'attachments': TESTANNOUNCE1_ATTACHMENTS,
+        'username': username}))
+
+    with patch.object(sys, 'argv', testargs):
+        with pytest.raises(SystemExit):
+            announcer.main()

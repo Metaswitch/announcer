@@ -24,6 +24,7 @@ flake8 = "^3.7"
 werkzeug = "^0.15.4"
 pytest-httpserver = "^0.3.0"
 tox = "^3.12"
+pytest-cov = "^2.7"
 
 [tool.poetry.scripts]
 announce = "announcer.__init__:main"
