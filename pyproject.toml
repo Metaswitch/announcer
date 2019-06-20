@@ -16,7 +16,7 @@ typing = "^3.6.4"
 [tool.poetry.dev-dependencies]
 pylint = "^2.3"
 wheel = "^0.33.4"
-mypy = "^0.701.0"
+mypy = "^0.710"
 yamllint = "^1.16"
 bandit = "^1.6"
 pytest = "^4.6"
