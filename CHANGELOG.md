@@ -9,6 +9,7 @@ version number is tracked in the file `VERSION`.
 ## [Unreleased]
 ### Changed
 - Add coveralls support
+- Add deeper indents for sublists and triangular bullets
 
 ### Added
 
