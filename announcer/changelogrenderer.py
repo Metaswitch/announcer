@@ -152,9 +152,14 @@ class ChangeLogRenderer(BaseRenderer):
         if listentry.number is not None:
             bullet = "{}.".format(listentry.number)
         else:
-            bullet = "\u2022"
+            if listentry.depth > 0:
+                # Use TRIANGULAR BULLET for subbullets
+                bullet = "\u2023"
+            else:
+                # Use BULLET
+                bullet = "\u2022"
 
-        leading_spaces = " " * (listentry.depth * 2)
+        leading_spaces = " " * (listentry.depth * 4)
 
         return "{spaces}{bullet} {content}\n".format(
             spaces=leading_spaces, bullet=bullet, content=listentry.content
