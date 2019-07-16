@@ -9,7 +9,7 @@ matrix:
   allow_failures:
   - python: 3.4
 install:
-- pip install -U poetry tox-travis tomlq python-coveralls
+- pip install -U poetry==0.12.16 tox-travis tomlq python-coveralls
 script: tox
 after_success:
   - coveralls
