@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "announcer"
-version = "2.1.0"
+version = "2.2.0"
 description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack"
 authors = ["Max Dymond <max.dymond@metaswitch.com>"]
 license = "MIT"
