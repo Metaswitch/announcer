@@ -22,7 +22,7 @@ bandit = "^1.6"
 pytest = "^4.6"
 flake8 = "^3.7"
 werkzeug = "^0.15.4"
-pytest-httpserver = "^0.3.0"
+pytest-httpserver = "^0.3.1"
 tox = "^3.13"
 pytest-cov = "^2.7"
 
