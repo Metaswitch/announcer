@@ -28,6 +28,7 @@ def announce(
     username: str = None,
     icon_url: str = None,
     icon_emoji: str = None,
+    tag: str = None,
 ):
     """Main script for announce
 
@@ -71,7 +72,8 @@ def announce(
 
     if base_url:
         # Add a button to view the CHANGELOG.md.
-        changelog_url = "{0}/blob/{1}/CHANGELOG.md".format(base_url, changelogversion)
+        tag = tag if tag else changelogversion
+        changelog_url = "{0}/blob/{1}/CHANGELOG.md".format(base_url, tag)
         fallback.append("View CHANGELOG.md at {0}".format(changelog_url))
         actions.append(
             {"type": "button", "text": "View CHANGELOG.md", "url": changelog_url}
@@ -174,6 +176,11 @@ def main():
         help="A Slack emoji code to use for the user icon in the announcement "
         "(e.g. party_parrot)",
     )
+    parser.add_argument(
+        "--tag",
+        dest="tag",
+        help="The tag to announce (e.g. 1.0.0). Defaults to changelogversion",
+    )
 
     args = parser.parse_args()
 
@@ -186,6 +193,7 @@ def main():
             username=args.username,
             icon_url=args.iconurl,
             icon_emoji=args.iconemoji,
+            tag=args.tag,
         )
     except Exception as e:
         log.exception(e)
