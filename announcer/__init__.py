@@ -17,7 +17,8 @@ import requests
 log = logging.getLogger(__name__)
 
 
-DIFF_URL_RE = re.compile("^(.*)/compare/[^/]+$")
+DIFF_URL_RE = re.compile("^(.*)/compare/[^/]+[.][.][.]([^/]+)$")
+TREE_URL_RE = re.compile("^(.*)/tree/([^/]+)$")
 
 
 def announce(
@@ -46,10 +47,18 @@ def announce(
 
     # Try and derive the base URL from the diff URL if it exists.
     base_url = None
+    reference = None
     if diff_url:
-        m = DIFF_URL_RE.match(diff_url)
-        if m:
-            base_url = m.group(1)
+        diff_m = DIFF_URL_RE.match(diff_url)
+        tree_m = TREE_URL_RE.match(diff_url)
+        if diff_m:
+            base_url = diff_m.group(1)
+            reference = diff_m.group(2)
+        elif tree_m:
+            base_url = tree_m.group(1)
+            reference = tree_m.group(2)
+
+    log.debug("Base URL: %s; Reference %s", base_url, reference)
 
     # Make a message attachment.
     pretext = ["*{0} {1}*".format(projectname, changelogversion)]
@@ -71,7 +80,7 @@ def announce(
 
     if base_url:
         # Add a button to view the CHANGELOG.md.
-        changelog_url = "{0}/blob/{1}/CHANGELOG.md".format(base_url, changelogversion)
+        changelog_url = "{0}/blob/{1}/CHANGELOG.md".format(base_url, reference)
         fallback.append("View CHANGELOG.md at {0}".format(changelog_url))
         actions.append(
             {"type": "button", "text": "View CHANGELOG.md", "url": changelog_url}
