@@ -132,3 +132,39 @@ def test_announce_main(httpserver):
     with patch.object(sys, 'argv', testargs):
         rc = announcer.main()
         assert rc == announcer.ScriptRC.SUCCESS
+
+
+def test_announce_tags(httpserver):
+    """Test the announce function with a file that has non-standard references."""
+    version = "0.1.0"
+    changelog = os.path.join(TEST_DIR, "testannounce_tags.md")
+    username = "test_announce_tags"
+
+    httpserver.expect_request("/slack").respond_with_handler(verify_dict({
+        'attachments': [
+            {'color': 'good',
+             'pretext': '*test_announce_tags 0.1.0* '
+                        '(https://github.com/Metaswitch/announcer)',
+             'text': '0.1.0 - 2018-09-26\n*Added*\n• Initial version\n'},
+            {'fallback': 'View changes at https://github.com/Metaswitch/announcer/'
+                         'tree/0.1.0-msw\nView CHANGELOG.md at https://github.com/'
+                         'Metaswitch/announcer/blob/0.1.0-msw/CHANGELOG.md',
+             'color': 'good',
+             'actions': [
+                 {'type': 'button',
+                  'text': 'View Changes',
+                  'url': 'https://github.com/Metaswitch/announcer/tree/0.1.0-msw'},
+                 {'type': 'button',
+                  'text': 'View CHANGELOG.md',
+                  'url': 'https://github.com/Metaswitch/announcer/blob/0.1.0-msw/'
+                         'CHANGELOG.md'}
+             ]}
+        ],
+        'username': 'test_announce_tags'}))
+
+    rc = announcer.announce(httpserver.url_for("/slack"),
+                            version,
+                            changelog,
+                            "test_announce_tags",
+                            username=username)
+    assert rc == announcer.ScriptRC.SUCCESS

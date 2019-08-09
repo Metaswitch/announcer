@@ -12,6 +12,7 @@ def test_changelog_simple():
                        "*Added*\n"
                        "\u2022 Initial version\n")
 
+
 def test_changelog_formatting():
     cl = announcer.Changelog(os.path.join(TEST_DIR, "testchangelog_formatting.md"))
     (details, diff_url) = cl.get_version_details("0.1.0")

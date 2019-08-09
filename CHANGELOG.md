@@ -9,6 +9,7 @@ version number is tracked in the file `VERSION`.
 ## [Unreleased]
 ### Changed
 - Fix after_deploy.sh so that the current directory is mounted in when calling announce
+- Handle references that don't match the changelog version
 
 ### Added
 
