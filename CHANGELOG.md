@@ -8,6 +8,10 @@ version number is tracked in the file `VERSION`.
 
 ## [Unreleased]
 ### Changed
+### Added
+
+## [2.3.0] - 2019-08-12
+### Changed
 - Fix after_deploy.sh so that the current directory is mounted in when calling announce
 - Handle references that don't match the changelog version
 
@@ -39,7 +43,8 @@ version number is tracked in the file `VERSION`.
 
 ### Added
 
-[Unreleased]: https://github.com/Metaswitch/announcer/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/Metaswitch/announcer/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/Metaswitch/announcer/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/Metaswitch/announcer/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/Metaswitch/announcer/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/Metaswitch/announcer/tree/2.0.0
