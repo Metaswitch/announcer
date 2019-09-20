@@ -522,7 +522,7 @@ description = "The comprehensive WSGI web application library."
 name = "werkzeug"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "0.15.6"
+version = "0.16.0"
 
 [[package]]
 category = "dev"
@@ -561,7 +561,7 @@ python-versions = ">=2.7"
 version = "0.5.1"
 
 [metadata]
-content-hash = "e75f7f8b02220e287a9aff5d3df593d5fb8cc26888968765b5f132dab077962d"
+content-hash = "720e0a3b0f2b3e1b2aad33fe4f697e0b92cf6dbfe5ff3e3b886b51f28b26b4e1"
 python-versions = "^3.4"
 
 [metadata.hashes]
@@ -614,7 +614,7 @@ typing-extensions = ["2ed632b30bb54fc3941c382decfd0ee4148f5c591651c9272473fea2c6
 urllib3 = ["2393a695cd12afedd0dcb26fe5d50d0cf248e5a66f75dbd89a3d4eb333a61af4", "a637e5fae88995b256e3409dc4d52c2e2e0ba32c42a6365fee8bbd2238de3cfb"]
 virtualenv = ["99acaf1e35c7ccf9763db9ba2accbca2f4254d61d1912c5ee364f9cc4a8942a0", "fe51cdbf04e5d8152af06c075404745a7419de27495a83f0d72518ad50be3ce8"]
 wcwidth = ["3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e", "f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c"]
-werkzeug = ["00d32beac38fcd48d329566f80d39f10ec2ed994efbecfb8dd4b320062d05902", "0a24d43be6a7dce81bae05292356176d6c46d63e42a0dd3f9504b210a9cfaa43"]
+werkzeug = ["7280924747b5733b246fe23972186c6b348f9ae29724135a6dfc1e53cea433e7", "e5f4a1f98b52b18a93da705a7458e55afb26f32bff83ff5d19189f92462d65c4"]
 wheel = ["10c9da68765315ed98850f8e048347c3eb06dd81822dc2ab1d4fde9dc9702646", "f4da1763d3becf2e2cd92a14a7c920f0f00eca30fdde9ea992c836685b9faf28"]
 wrapt = ["4aea003270831cceb8a90ff27c4031da6ead7ec1886023b80ce0dfe0adf61533"]
 yamllint = ["67173339f28868260ce5912abfefa10e115ceb1d2ac1c4d8c7acc8c4ef6c9a8a", "70a6f8316851254e197a6231c35577be29fa2fbe2c77390a54c9a50217cdaa13"]
