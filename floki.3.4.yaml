@@ -1,0 +1,4 @@
+image: python:3.4
+shell: bash
+init:
+  - bash install.sh
