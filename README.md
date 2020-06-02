@@ -1,13 +1,13 @@
-![Travis build](https://img.shields.io/travis/Metaswitch/announcer)
-![pypi version](https://img.shields.io/pypi/v/announcer)
-![docker pulls](https://img.shields.io/docker/pulls/metaswitch/announcer)
+[![Travis build](https://img.shields.io/travis/Metaswitch/announcer)](https://travis-ci.org/Metaswitch/announcer)
+[![pypi version](https://img.shields.io/pypi/v/announcer)](https://pypi.org/project/announcer/)
+[![docker pulls](https://img.shields.io/docker/pulls/metaswitch/announcer)](https://hub.docker.com/r/metaswitch/announcer)
 
 # announcer
 
 This tool:
 * takes an [keepachangelog](https://keepachangelog.com/en/1.0.0/)-style CHANGELOG.md file
 * extracts all changes for a particular version
-* and sends a formatted message to a Slack webhook. 
+* and sends a formatted message to a Slack webhook.
 
 It is available as a Python package, or as a Docker container for use in CI.
 
