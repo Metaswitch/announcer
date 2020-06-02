@@ -10,9 +10,9 @@ set -ex
 ISNEW=$(python -c "print(1 if __import__('sys').version_info >= (3,5) else 0)")
 if (( ISNEW ))
 then
-  COVERALLS="python-coveralls"
+  COVERALLS="coveralls"
 else
-  COVERALLS="pyYAML==5.2 python-coveralls"
+  COVERALLS="pyYAML==5.2 coveralls"
 fi
 
 pip install -U poetry tox-travis tomlq $COVERALLS
