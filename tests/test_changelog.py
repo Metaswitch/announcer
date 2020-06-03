@@ -38,3 +38,48 @@ def test_changelog_formatting():
         "alert(s);\n"
         "```\n"
         "2. List that starts at 2\n")
+
+
+def test_changelog_tables():
+    cl = announcer.Changelog(os.path.join(TEST_DIR, "testchangelog_tables.md"))
+    (details, diff_url) = cl.get_version_details("0.1.0")
+
+    try:
+        from pytablewriter import UnicodeTableWriter as TableWriter
+        from pytablewriter.style import Style
+
+        # We have access to pytablewriter, so use Unicode table
+        assert details == (
+            u"0.1.0 - 2020-06-02\n"
+            "*Tested*\n"
+            "```"
+            "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500"
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c"
+            "\u2500\u2500\u2500\u2500\u2500\u2510\n"
+            "\u2502 Tables \u2502     Are     \u2502Cool \u2502\n"
+            "\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500"
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c"
+            "\u2500\u2500\u2500\u2500\u2500\u2524\n"
+            "\u2502col 1 is\u2502left-aligned \u2502$1600\u2502\n"
+            "\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500"
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c"
+            "\u2500\u2500\u2500\u2500\u2500\u2524\n"
+            "\u2502col 2 is\u2502  centered   \u2502  $12\u2502\n"
+            "\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500"
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c"
+            "\u2500\u2500\u2500\u2500\u2500\u2524\n"
+            "\u2502col 3 is\u2502right-aligned\u2502   $1\u2502\n"
+            "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500"
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534"
+            "\u2500\u2500\u2500\u2500\u2500\u2518\n"
+            "```\n"
+            "Next line")
+    except ImportError:
+        # No access to TableWriter, so use the other style of table.
+        assert details == (u"0.1.0 - 2020-06-02\n"
+                           "*Tested*\n"
+                           "```Tables | Are | Cool\n"
+                           "col 1 is | left-aligned | $1600\n"
+                           "col 2 is | centered | $12\n"
+                           "col 3 is | right-aligned | $1```\n"
+                           "Next line")

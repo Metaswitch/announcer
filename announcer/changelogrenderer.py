@@ -188,17 +188,70 @@ class ChangeLogRenderer(BaseRenderer):
         log.debug("Listitem entries: %s", entries)
         return entries
 
-    def render_list_item(self, token):
-        return "list_item_uncalled"
+    def render_list_item(self, token):  # pragma: no cover
+        """This function is not normally called."""
+        return self.render_to_plaintext(token)
 
     def render_table(self, token):
-        return "table_unsupported"
+        # Import classes for writing out the table if possible.
+        try:
+            from pytablewriter import UnicodeTableWriter as TableWriter
+            from pytablewriter.style import Style
+        except ImportError:
+            from collections import namedtuple
 
-    def render_table_row(self, token, is_header=False):
-        return "table_row_unsupported"
+            class TableWriter:
+                def __init__(self):
+                    self.headers = None
+                    self.value_matrix = []
+                    self.column_styles = None
+
+                def dumps(self):
+                    lines = []
+                    if self.headers:
+                        lines.append(" | ".join(self.headers))
+                    lines.extend(" | ".join(row) for row in self.value_matrix)
+                    return "\n".join(lines)
+
+            Style = namedtuple('Style', ['align'])
+
+        # Get a writer object for dumping the table out. This can either be
+        writer = TableWriter()
+
+        # If a header row was defined, add that to the table writer.
+        if hasattr(token, "header"):
+            writer.headers = self.analyse_table_row(token.header, is_header=True)
+
+        # Add all the value rows.
+        writer.value_matrix = [
+            self.analyse_table_row(table_row)
+            for table_row in token.children
+        ]
+
+        # Add in any column alignment if defined.
+        if token.column_align != [None]:
+            alignment = {
+                None: "left",
+                0: "center",
+                1: "right"
+            }
+            writer.column_styles = [
+                Style(align=alignment[col_alignment])
+                for col_alignment in token.column_align
+            ]
+
+        # Return the table in backticks to render it in fixed-width
+        return "```{0}```\n".format(writer.dumps())
+
+    def analyse_table_row(self, token, is_header=False):
+        return [self.render_table_cell(child, is_header) for child in token.children]
+
+    def render_table_row(self, token, is_header=False):  # pragma: no cover
+        """This function is not called in normal code."""
+        return self.render_to_plaintext(token)
 
     def render_table_cell(self, token, in_header=False):
-        return "table_cell_unsupported"
+        return self.render_to_plaintext(token)
 
     @staticmethod
     def render_thematic_break(token):
