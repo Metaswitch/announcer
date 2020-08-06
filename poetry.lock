@@ -509,7 +509,7 @@ description = "pytest-httpserver is a httpserver for pytest"
 name = "pytest-httpserver"
 optional = false
 python-versions = ">=3.4"
-version = "0.3.4"
+version = "0.3.5"
 
 [package.dependencies]
 werkzeug = "*"
@@ -519,7 +519,7 @@ python = "<3.5"
 version = "*"
 
 [package.extras]
-dev = ["coverage", "ipdb", "pycodestyle", "pylint", "pytest", "pytest-cov", "reno", "requests", "rope", "sphinx", "sphinx-rtd-theme", "wheel"]
+dev = ["autopep8", "coverage", "flake8", "ipdb", "pytest", "pytest-cov", "reno", "requests", "rope", "sphinx", "sphinx-rtd-theme", "wheel"]
 test = ["coverage", "pytest", "pytest-cov", "requests"]
 
 [[package]]
@@ -759,7 +759,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "unittest2", "jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d56810edbf4fe445b0213c0108187c6302c378859a1e691b6c7d312751f04c8e"
+content-hash = "bab5c6f3648426df0278425d4e3703d0949c6c7eb6163520e271cd5f2f86434b"
 python-versions = "^3.4"
 
 [metadata.files]
@@ -1005,8 +1005,8 @@ pytest-cov = [
     {file = "pytest_cov-2.8.1-py2.py3-none-any.whl", hash = "sha256:cdbdef4f870408ebdbfeb44e63e07eb18bb4619fae852f6e760645fa36172626"},
 ]
 pytest-httpserver = [
-    {file = "pytest_httpserver-0.3.4-py3-none-any.whl", hash = "sha256:7feab352b2626d1a0ecdebffcac5e5875979f08ad7e621b2289980ce8f6ebc5b"},
-    {file = "pytest_httpserver-0.3.4.tar.gz", hash = "sha256:c7269aed8b4f2d24e41eaa2034dd9ab7ae02b0cb6e71afeae93127832920ec8d"},
+    {file = "pytest_httpserver-0.3.5-py3-none-any.whl", hash = "sha256:c55289404b7604bfd1c103d243824b441add501828e05807795c2b851b9b0747"},
+    {file = "pytest_httpserver-0.3.5.tar.gz", hash = "sha256:1d553dc0fb27483d00a1e25ddcfc38bd3438336ed60f862cad8c50b11621a11a"},
 ]
 pyyaml = [
     {file = "PyYAML-5.2-cp27-cp27m-win32.whl", hash = "sha256:35ace9b4147848cafac3db142795ee42deebe9d0dad885ce643928e88daebdcc"},
