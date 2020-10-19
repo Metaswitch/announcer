@@ -410,7 +410,7 @@ testing = ["fields", "hunter", "process-tests (2.0.2)", "six", "virtualenv"]
 
 [[package]]
 name = "pytest-httpserver"
-version = "0.3.5"
+version = "0.3.6"
 description = "pytest-httpserver is a httpserver for pytest"
 category = "dev"
 optional = false
@@ -421,8 +421,8 @@ typing = {version = "*", markers = "python_version < \"3.5\""}
 werkzeug = "*"
 
 [package.extras]
-dev = ["autopep8", "coverage", "flake8", "ipdb", "pytest", "pytest-cov", "reno", "requests", "rope", "sphinx", "sphinx-rtd-theme", "wheel"]
-test = ["coverage", "pytest", "pytest-cov", "requests"]
+dev = ["flake8", "wheel", "rope", "pytest", "pytest-cov", "coverage", "ipdb", "requests", "sphinx", "sphinx-rtd-theme", "reno", "autopep8"]
+test = ["pytest", "pytest-cov", "coverage", "requests"]
 
 [[package]]
 name = "pyyaml"
@@ -631,7 +631,7 @@ testing = ["pathlib2", "unittest2", "jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.4"
-content-hash = "bab5c6f3648426df0278425d4e3703d0949c6c7eb6163520e271cd5f2f86434b"
+content-hash = "b4368f1d250f4e51dcd646238f640bd6c3e33939e29ff5b41b64cc744d238346"
 
 [metadata.files]
 appdirs = [
@@ -837,8 +837,8 @@ pytest-cov = [
     {file = "pytest_cov-2.8.1-py2.py3-none-any.whl", hash = "sha256:cdbdef4f870408ebdbfeb44e63e07eb18bb4619fae852f6e760645fa36172626"},
 ]
 pytest-httpserver = [
-    {file = "pytest_httpserver-0.3.5-py3-none-any.whl", hash = "sha256:c55289404b7604bfd1c103d243824b441add501828e05807795c2b851b9b0747"},
-    {file = "pytest_httpserver-0.3.5.tar.gz", hash = "sha256:1d553dc0fb27483d00a1e25ddcfc38bd3438336ed60f862cad8c50b11621a11a"},
+    {file = "pytest_httpserver-0.3.6-py3-none-any.whl", hash = "sha256:8cdab4bb68be0ed7bc6894d08bd043270ce0bb52ecdedc3955be1b86119984e5"},
+    {file = "pytest_httpserver-0.3.6.tar.gz", hash = "sha256:896e93bc191a2e887f906e07b312a4b753c2803185e9c7b1c6648b6ef65fb0f1"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
