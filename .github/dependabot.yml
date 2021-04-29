@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  reviewers:
+  - maxdymond
+  ignore:
+  - dependency-name: pytest-httpserver
+    versions:
+    - 0.3.6
+    - 0.3.7
+    - 0.3.8
