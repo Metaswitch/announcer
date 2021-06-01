@@ -1,9 +1,11 @@
 .idea/
-venv/
+venv*/
 build/
 dist/
 announcer.egg-info/
 .mypy_cache/
+.pytest_cache/
 __pycache__
 .tox/
 .coverage
+.vscode/

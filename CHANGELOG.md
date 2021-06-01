@@ -8,6 +8,9 @@ version number is tracked in the file `VERSION`.
 
 ## [Unreleased]
 ### Changed
+- Switch from Travis to Github Actions
+- Remove Python 3.4 support.
+
 ### Added
 
 ## [2.3.0] - 2019-08-12
