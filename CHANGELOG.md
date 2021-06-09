@@ -13,6 +13,11 @@ version number is tracked in the file `VERSION`.
 - Upgrade to python 3.9-alpine3.13
 
 ### Added
+- Add Microsoft Teams support to announcer
+  - Some commandline options are not supported in announcer when using Teams.
+    - --iconurl
+    - --iconemoji
+    - --username
 
 ## [2.3.0] - 2019-08-12
 ### Changed
