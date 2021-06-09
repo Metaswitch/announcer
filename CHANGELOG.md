@@ -10,6 +10,7 @@ version number is tracked in the file `VERSION`.
 ### Changed
 - Switch from Travis to Github Actions
 - Remove Python 3.4 support.
+- Upgrade to python 3.9-alpine3.13
 
 ### Added
 
