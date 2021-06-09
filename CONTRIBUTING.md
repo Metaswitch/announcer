@@ -10,7 +10,7 @@ To do this, simply ensure that all of your commits are signed-off using the git 
 
 ```shell
 $ git commit -s -m "Making changes!"
-``` 
+```
 
 ## Types of Contributions
 You can contribute in many ways:
@@ -83,7 +83,7 @@ Ready to contribute? Here's how to set up `announcer` for local development.
    tests using tox.
 
     ```shell
-    $ tox 
+    $ tox
     ```
 
 6. Commit your changes (ensuring they are signed-off) and push your branch to GitHub::
@@ -104,9 +104,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
-3. The pull request should work for Python >=3.4. Check
-   https://travis-ci.org/Metaswitch/announcer/pull_requests
-   and make sure that the tests pass for all supported Python versions.
+3. The pull request should work for Python >=3.5.
 
 ## Tips
 

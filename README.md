@@ -1,7 +1,6 @@
-[![Travis build](https://img.shields.io/travis/Metaswitch/announcer)](https://travis-ci.org/Metaswitch/announcer)
+[![Github build](https://img.shields.io/github/workflow/status/metaswitch/announcer/Announcer)](https://github.com/Metaswitch/announcer)
 [![pypi version](https://img.shields.io/pypi/v/announcer)](https://pypi.org/project/announcer/)
 [![docker pulls](https://img.shields.io/docker/pulls/metaswitch/announcer)](https://hub.docker.com/r/metaswitch/announcer)
-[![Coverage Status](https://coveralls.io/repos/github/Metaswitch/announcer/badge.svg)](https://coveralls.io/github/Metaswitch/announcer)
 
 # announcer
 
