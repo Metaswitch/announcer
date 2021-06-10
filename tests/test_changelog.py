@@ -6,17 +6,21 @@ TEST_DIR = os.path.dirname(__file__)
 
 
 def test_changelog_simple():
-    cl = announcer.Changelog(os.path.join(TEST_DIR, "testchangelog_simple.md"))
-    (details, diff_url) = cl.get_version_details("0.1.0")
-    assert details == (u"0.1.0 - 2018-09-26\n"
-                       "*Added*\n"
-                       "\u2022 Initial version\n")
+    cl = announcer.Changelog(
+        os.path.join(TEST_DIR, "testchangelog_simple.md"), announcer.ChangeLogRenderer
+    )
+    (details, _diff_url) = cl.get_version_details("0.1.0")
+    assert details == (u"0.1.0 - 2018-09-26\n" "*Added*\n" "\u2022 Initial version\n")
 
 
 def test_changelog_formatting():
-    cl = announcer.Changelog(os.path.join(TEST_DIR, "testchangelog_formatting.md"))
-    (details, diff_url) = cl.get_version_details("0.1.0")
-    assert details == (u"0.1.0 - 2018-09-26\n"
+    cl = announcer.Changelog(
+        os.path.join(TEST_DIR, "testchangelog_formatting.md"),
+        announcer.ChangeLogRenderer,
+    )
+    (details, _diff_url) = cl.get_version_details("0.1.0")
+    assert details == (
+        u"0.1.0 - 2018-09-26\n"
         "*Tested*\n"
         "\u2022 Testing `singlequote` works properly.\n"
         "\u2022 Testing `triplequote` works properly.\n"
@@ -34,7 +38,8 @@ def test_changelog_formatting():
         "1. Numbered list\n"
         "2. Second entry\n"
         "```\n"
-        "var s = \"JavaScript syntax highlighting\";\n"
+        'var s = "JavaScript syntax highlighting";\n'
         "alert(s);\n"
         "```\n"
-        "2. List that starts at 2\n")
+        "2. List that starts at 2\n"
+    )

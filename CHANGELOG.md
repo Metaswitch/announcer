@@ -4,17 +4,32 @@ All notable changes to this project will be documented in this file.
 
 This file's format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/). The
-version number is tracked in the file `VERSION`.
+version number is tracked in the file `pyproject.toml`.
 
 ## [Unreleased]
+
+### Breaking Changes
+
+### Added
+
+### Fixed
+
+## [3.0.0] - 2021-06-10
+
 ### Changed
 - Switch from Travis to Github Actions
 - Remove Python 3.4 support.
 - Upgrade to python 3.9-alpine3.13
 
 ### Added
+- Add Microsoft Teams support to announcer
+  - Some commandline options are not supported in announcer when using Teams.
+    - --iconurl
+    - --iconemoji
+    - --username
 
 ## [2.3.0] - 2019-08-12
+
 ### Changed
 - Fix after_deploy.sh so that the current directory is mounted in when calling announce
 - Handle references that don't match the changelog version
@@ -22,6 +37,7 @@ version number is tracked in the file `VERSION`.
 ### Added
 
 ## [2.2.0] - 2019-07-16
+
 ### Changed
 - Dependency updates:
   - mypy from "^0.701.0" to "^0.720"
@@ -36,18 +52,21 @@ version number is tracked in the file `VERSION`.
   - pytest-cov added at "^2.7"
 
 ## [2.1.0] - 2019-05-31
+
 ### Changed
 - Do Docker deploys on tagged builds
 
 ### Added
 
 ## [2.0.0] - 2019-05-31
+
 ### Changed
 - First public release! :tada:
 
 ### Added
 
-[Unreleased]: https://github.com/Metaswitch/announcer/compare/2.3.0...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/Metaswitch/announcer/compare/2.3.0...3.0.0
 [2.3.0]: https://github.com/Metaswitch/announcer/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/Metaswitch/announcer/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/Metaswitch/announcer/compare/2.0.0...2.1.0
