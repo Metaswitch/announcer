@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "announcer"
-version = "2.3.0"
-description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack"
+version = "3.0.0"
+description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack and Microsoft Teams"
 authors = ["Max Dymond <max.dymond@metaswitch.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ['slack']
+keywords = ['slack', 'teams']
 
 [tool.poetry.dependencies]
 python = "^3.5"

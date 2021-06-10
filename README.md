@@ -7,7 +7,7 @@
 This tool:
 * takes an [keepachangelog](https://keepachangelog.com/en/1.0.0/)-style CHANGELOG.md file
 * extracts all changes for a particular version
-* and sends a formatted message to a Slack webhook.
+* and sends a formatted message to a Slack or Microsoft Teams webhook.
 
 It is available as a Python package, or as a Docker container for use in CI.
 
@@ -22,30 +22,26 @@ pip install announcer
 ## Tool usage
 
 ```
-usage: announce [-h] --slackhook SLACKHOOK --changelogversion CHANGELOGVERSION
-                --changelogfile CHANGELOGFILE --projectname PROJECTNAME
-                [--username USERNAME]
-                [--iconurl ICONURL | --iconemoji ICONEMOJI]
+usage: announce [-h] (--webhook WEBHOOK | --slackhook WEBHOOK) [--target {slack,teams}] --changelogversion CHANGELOGVERSION --changelogfile CHANGELOGFILE --projectname PROJECTNAME [--username USERNAME] [--iconurl ICONURL | --iconemoji ICONEMOJI]
 
-Announce CHANGELOG changes on Slack
+Announce CHANGELOG changes on Slack and Microsoft Teams
 
 optional arguments:
   -h, --help            show this help message and exit
-  --slackhook SLACKHOOK
-                        The incoming webhook URL
+  --webhook WEBHOOK     The incoming webhook URL
+  --slackhook WEBHOOK   The incoming webhook URL. (Deprecated)
+  --target {slack,teams}
+                        The type of announcement that should be sent to the webhook
   --changelogversion CHANGELOGVERSION
                         The changelog version to announce (e.g. 1.0.0)
   --changelogfile CHANGELOGFILE
-                        The file containing changelog details (e.g.
-                        CHANGELOG.md)
+                        The file containing changelog details (e.g. CHANGELOG.md)
   --projectname PROJECTNAME
                         The name of the project to announce (e.g. announcer)
-  --username USERNAME   The username that the announcement will be made as
-                        (e.g. announcer)
-  --iconurl ICONURL     A URL to use for the user icon in the announcement
+  --username USERNAME   The username that the announcement will be made as (e.g. announcer). Valid for: Slack
+  --iconurl ICONURL     A URL to use for the user icon in the announcement. Valid for: Slack
   --iconemoji ICONEMOJI
-                        A Slack emoji code to use for the user icon in the
-                        announcement (e.g. party_parrot)
+                        An emoji code to use for the user icon in the announcement (e.g. party_parrot). Valid for: Slack
 ```
 
 ## Gitlab Usage
@@ -55,9 +51,9 @@ Announcer builds and publishes a Docker image that you can integrate into your `
 ```
 announce:
   stage: announce
-  image: metaswitch/announcer:2.3.0
+  image: metaswitch/announcer:3.0.0
   script:
-   - announce --slackhook <Slack hook address>
+   - announce --webhook <webhook address>
               --changelogversion $CI_COMMIT_REF_NAME
               --changelogfile <CHANGELOG.md file>
               --projectname <Project name>
