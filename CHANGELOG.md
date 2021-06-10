@@ -14,6 +14,9 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Fixed
 
+## [3.0.1] - 2021-06-10
+- Fix up docker deploy that was still using TRAVIS_TAG
+
 ## [3.0.0] - 2021-06-10
 
 ### Changed
@@ -65,7 +68,8 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Added
 
-[unreleased]: https://github.com/Metaswitch/announcer/compare/3.0.0...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/3.0.1...HEAD
+[3.0.1]: https://github.com/Metaswitch/announcer/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/Metaswitch/announcer/compare/2.3.0...3.0.0
 [2.3.0]: https://github.com/Metaswitch/announcer/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/Metaswitch/announcer/compare/2.1.0...2.2.0
