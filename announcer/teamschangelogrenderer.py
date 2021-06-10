@@ -4,7 +4,6 @@
 """TeamsChangeLogRenderer for mistletoe."""
 
 import collections
-import html
 import logging
 from mistletoe.html_renderer import HTMLRenderer
 

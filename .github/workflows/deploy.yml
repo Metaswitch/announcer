@@ -1,0 +1,26 @@
+name: Deploy
+on:
+  push:
+    tags:
+      - '**'
+jobs:
+  Deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: 'Set up Python'
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: actions/checkout@v2
+      - run: bash install.sh
+      - run: bash deploy.sh
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+          PYPI_USER: ${{ secrets.PYPI_USER }}
+          PYPI_PASS: ${{ secrets.PYPI_PASS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: bash after_deploy.sh
+        env:
+          WEBHOOK: ${{ secrets.WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

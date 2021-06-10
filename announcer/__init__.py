@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Copyright (C) Metaswitch Networks.
-"""A tool for announcing keepachangelog format logs to Slack and Microsoft Teams channels"""
+"""A tool for announcing keepachangelog format logs to Slack and Microsoft
+   Teams channels"""
 
 import argparse
 import json
 import logging
 import re
 import sys
-import typing
+from typing import Tuple, Optional, List, Dict, Any
 from enum import Enum
 
 from .changelogrenderer import ChangeLogRenderer
@@ -23,7 +24,9 @@ DIFF_URL_RE = re.compile("^(.*)/compare/[^/]+[.][.][.]([^/]+)$")
 TREE_URL_RE = re.compile("^(.*)/tree/([^/]+)$")
 
 
-def derive_urls(diff_url: str) -> typing.Tuple[str, str]:
+def derive_urls(
+    diff_url: Optional[str],
+) -> Tuple[Optional[str], Optional[str]]:
     base_url = None
     reference = None
     if diff_url:
@@ -105,7 +108,7 @@ def announce_slack(
 
     attachments = [
         {"color": "good", "pretext": " ".join(pretext), "text": changelog_info}
-    ]  # type: typing.List[typing.Dict[str, typing.Any]]
+    ]  # type: List[Dict[str, Any]]
 
     fallback = []
     actions = []
@@ -129,7 +132,7 @@ def announce_slack(
         )
 
     # Construct the data to send to the endpoint.
-    message_data = {"attachments": attachments}  # type: typing.Dict[str, typing.Any]
+    message_data = {"attachments": attachments}  # type: Dict[str, Any]
 
     if username:
         message_data["username"] = username
@@ -232,9 +235,7 @@ class Changelog(object):
         self.filename = filename
         self.renderer_class = renderer_class
 
-    def get_version_details(
-        self, version: str
-    ) -> typing.Tuple[str, typing.Optional[str]]:
+    def get_version_details(self, version: str) -> Tuple[str, Optional[str]]:
         with open(self.filename, "r") as f:
             document = mistletoe.Document(f)
 
