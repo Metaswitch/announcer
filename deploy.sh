@@ -6,8 +6,12 @@ echo "Version: $VERSION"
 echo "Deploying to pypi"
 poetry publish --username $PYPI_USER --password $PYPI_PASS --build
 
-# Wait a short time before building the image.
-sleep 3
+# Wait until the package is deployed
+while ! pip3 install announcer==${VERSION}
+do
+    echo "Waiting for package to deploy to pypi"
+    sleep 10
+done
 
 echo "Deploying to docker"
 docker login -u $DOCKER_USER -p $DOCKER_PASS
