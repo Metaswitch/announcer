@@ -9,6 +9,8 @@ version number is tracked in the file `pyproject.toml`.
 ## [Unreleased]
 
 ### Breaking Changes
+- Set the minimum Python version to 3.7.
+  - 3.5 and 3.6 are EOL.
 
 ### Added
 
