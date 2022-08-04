@@ -416,7 +416,7 @@ testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fiel
 
 [[package]]
 name = "pytest-httpserver"
-version = "1.0.4"
+version = "1.0.5"
 description = "pytest-httpserver is a httpserver for pytest"
 category = "dev"
 optional = false
@@ -426,9 +426,9 @@ python-versions = ">=3.6,<4.0"
 Werkzeug = ">=2.0.0"
 
 [package.extras]
-dev = ["types-requests", "sphinx-rtd-theme", "sphinx", "requests", "reno", "pytest", "pytest-cov", "mypy", "ipdb", "flake8 (>4.0.0)", "coverage", "autopep8"]
-test = ["types-requests", "requests", "pytest", "pytest-cov", "mypy", "flake8 (>4.0.0)", "coverage"]
-doc = ["sphinx-rtd-theme", "sphinx", "reno"]
+dev = ["types-requests", "mypy", "reno", "sphinx-rtd-theme", "sphinx", "requests", "ipdb", "coverage", "pytest-cov", "pytest"]
+test = ["types-requests", "mypy", "requests", "coverage", "pytest-cov", "pytest"]
+doc = ["sphinx-rtd-theme", "sphinx"]
 
 [[package]]
 name = "pyyaml"
@@ -647,7 +647,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "cac147fbc8057beb934b281c79e965f83e94d5053d897eb49682cacc2e9cc412"
+content-hash = "6a3f1bfd94f7545425eb96de3598ca5b34c4d84d0155308c3dc97ca8aa48aea4"
 
 [metadata.files]
 astroid = [
@@ -928,8 +928,8 @@ pytest-cov = [
     {file = "pytest_cov-3.0.0-py3-none-any.whl", hash = "sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6"},
 ]
 pytest-httpserver = [
-    {file = "pytest_httpserver-1.0.4-py3-none-any.whl", hash = "sha256:17396350d7c0dec067bc8c5ceca7e1137aa0e3395468a9c179bdfc5ede9027a5"},
-    {file = "pytest_httpserver-1.0.4.tar.gz", hash = "sha256:6de464ba5f74628d6182ebbdcb56783edf2c9b0caf598dc35c11f014f24a3f0d"},
+    {file = "pytest_httpserver-1.0.5-py3-none-any.whl", hash = "sha256:9a4c5308da1482e0b2d792278518d400cf4043746e3da0fdb05747f56d6f80b2"},
+    {file = "pytest_httpserver-1.0.5.tar.gz", hash = "sha256:ae3296626d0a10e835a9f423c61b4540547d582422be054c3fcc08626baa1024"},
 ]
 pyyaml = [
     {file = "PyYAML-6.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:d4db7c7aef085872ef65a8fd7d6d09a14ae91f691dec3e87ee5ee0539d516f53"},
