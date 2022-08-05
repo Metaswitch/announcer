@@ -25,7 +25,7 @@ werkzeug = "^2.2.1"
 pytest-httpserver = "^1.0.5"
 tox = "^3.25"
 pytest-cov = "^3.0"
-types-requests = "^2.28.7"
+types-requests = "^2.28.8"
 
 [tool.poetry.scripts]
 announce = "announcer.__init__:main"
