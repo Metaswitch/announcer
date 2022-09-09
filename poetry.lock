@@ -227,11 +227,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "mistletoe"
-version = "0.8.2"
+version = "0.9.0"
 description = "A fast, extensible Markdown parser in pure Python."
 category = "main"
 optional = false
-python-versions = "~=3.3"
+python-versions = "~=3.5"
 
 [[package]]
 name = "mypy"
@@ -656,7 +656,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "bac42adae68dd5c21cf3c7683c585acefd359d8f781ddd96327133246cebb1a8"
+content-hash = "ca3a5f7525986668d4ff30a7340dc4be14a7013ac3fca9c1b7f7d031c7ac50bd"
 
 [metadata.files]
 astroid = [
@@ -852,8 +852,8 @@ mccabe = [
     {file = "mccabe-0.7.0.tar.gz", hash = "sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325"},
 ]
 mistletoe = [
-    {file = "mistletoe-0.8.2-py3-none-any.whl", hash = "sha256:3c82cbcf01ed0a79944ba7ba2b715e6da633d1eef24812904e9008160a74e93e"},
-    {file = "mistletoe-0.8.2.tar.gz", hash = "sha256:a2e354e653f29bcaf5599d8948512119ac6037e9c2f8ee77f39d55450e7d1a6c"},
+    {file = "mistletoe-0.9.0-py3-none-any.whl", hash = "sha256:11316e2fe0be422a8248293ad0efbee9ad0c6f3683b2f45bc6b989ea17a68c74"},
+    {file = "mistletoe-0.9.0.tar.gz", hash = "sha256:3cb96d78226d08f0d3bf09efcaf330d23902492006e18b2c06558e8b86bf7faf"},
 ]
 mypy = [
     {file = "mypy-0.971-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:f2899a3cbd394da157194f913a931edfd4be5f274a88041c9dc2d9cdcb1c315c"},
