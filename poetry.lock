@@ -611,11 +611,11 @@ watchdog = ["watchdog"]
 
 [[package]]
 name = "wheel"
-version = "0.33.6"
-description = "A built-package format for Python."
+version = "0.37.1"
+description = "A built-package format for Python"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
 [package.extras]
 test = ["pytest (>=3.0.0)", "pytest-cov"]
@@ -656,7 +656,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "c999301e164bb264dc844edab0f7c1756c93ac4e3d68b5bf79d4256b5964c19d"
+content-hash = "d9a02b4e8cd42eee028a330ea784c4f483f7d4e2016029dd37853448a559f521"
 
 [metadata.files]
 astroid = [
@@ -1060,8 +1060,8 @@ werkzeug = [
     {file = "Werkzeug-2.2.2.tar.gz", hash = "sha256:7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9e00b8f"},
 ]
 wheel = [
-    {file = "wheel-0.33.6-py2.py3-none-any.whl", hash = "sha256:f4da1763d3becf2e2cd92a14a7c920f0f00eca30fdde9ea992c836685b9faf28"},
-    {file = "wheel-0.33.6.tar.gz", hash = "sha256:10c9da68765315ed98850f8e048347c3eb06dd81822dc2ab1d4fde9dc9702646"},
+    {file = "wheel-0.37.1-py2.py3-none-any.whl", hash = "sha256:4bdcd7d840138086126cd09254dc6195fb4fc6f01c050a1d7236f2630db1d22a"},
+    {file = "wheel-0.37.1.tar.gz", hash = "sha256:e9a504e793efbca1b8e0e9cb979a249cf4a0a7b5b8c9e8b65a5e39d49529c1c4"},
 ]
 wrapt = [
     {file = "wrapt-1.14.0-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:5a9a1889cc01ed2ed5f34574c90745fab1dd06ec2eee663e8ebeefe363e8efd7"},
