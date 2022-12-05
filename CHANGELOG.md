@@ -9,10 +9,16 @@ version number is tracked in the file `pyproject.toml`.
 ## [Unreleased]
 
 ### Breaking Changes
-- Set the minimum Python version to 3.7.
-  - 3.5 and 3.6 are EOL.
 
 ### Added
+
+### Fixed
+
+## [4.0.0] - 2022-12-05
+
+### Breaking Changes
+- Set the minimum Python version to 3.7.
+  - 3.5 and 3.6 are EOL.
 
 ### Fixed
 - For Teams, split tokens into separate sections.
@@ -77,7 +83,8 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Added
 
-[unreleased]: https://github.com/Metaswitch/announcer/compare/3.0.2...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/Metaswitch/announcer/compare/3.0.2...4.0.0
 [3.0.2]: https://github.com/Metaswitch/announcer/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/Metaswitch/announcer/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/Metaswitch/announcer/compare/2.3.0...3.0.0
