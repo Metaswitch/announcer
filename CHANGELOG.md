@@ -13,6 +13,10 @@ version number is tracked in the file `pyproject.toml`.
 ### Added
 
 ### Fixed
+
+## [4.0.1] - 2022-12-05
+
+### Fixed
 - (Hopefully) fix deploy process; update Python image to latest 3.9.
 
 ## [4.0.0] - 2022-12-05
@@ -84,7 +88,8 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Added
 
-[unreleased]: https://github.com/Metaswitch/announcer/compare/4.0.0...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/4.0.1...HEAD
+[4.0.1]: https://github.com/Metaswitch/announcer/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/Metaswitch/announcer/compare/3.0.2...4.0.0
 [3.0.2]: https://github.com/Metaswitch/announcer/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/Metaswitch/announcer/compare/3.0.0...3.0.1
