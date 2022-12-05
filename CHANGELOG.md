@@ -13,6 +13,7 @@ version number is tracked in the file `pyproject.toml`.
 ### Added
 
 ### Fixed
+- (Hopefully) fix deploy process; update Python image to latest 3.9.
 
 ## [4.0.0] - 2022-12-05
 
