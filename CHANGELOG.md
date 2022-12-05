@@ -15,6 +15,7 @@ version number is tracked in the file `pyproject.toml`.
 ### Added
 
 ### Fixed
+- For Teams, split tokens into separate sections.
 
 ## [3.0.2] - 2021-06-10
 

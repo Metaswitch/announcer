@@ -7,6 +7,7 @@ import collections
 import html
 import logging
 from mistletoe.base_renderer import BaseRenderer
+from typing import List, Dict
 
 log = logging.getLogger(__name__)
 
@@ -30,6 +31,7 @@ class ChangeLogRenderer(BaseRenderer):
         super().__init__(*extras)
         self.version = version
         self.diff_url = None
+        self.sections: List[Dict[str, str]] = []
 
     def __exit__(self, *args):
         super().__exit__(*args)

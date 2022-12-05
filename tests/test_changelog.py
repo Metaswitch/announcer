@@ -9,8 +9,8 @@ def test_changelog_simple():
     cl = announcer.Changelog(
         os.path.join(TEST_DIR, "testchangelog_simple.md"), announcer.ChangeLogRenderer
     )
-    (details, _diff_url) = cl.get_version_details("0.1.0")
-    assert details == (u"0.1.0 - 2018-09-26\n" "*Added*\n" "\u2022 Initial version\n")
+    (details, _diff_url, _sections) = cl.get_version_details("0.1.0")
+    assert details == ("0.1.0 - 2018-09-26\n" "*Added*\n" "\u2022 Initial version\n")
 
 
 def test_changelog_formatting():
@@ -18,9 +18,9 @@ def test_changelog_formatting():
         os.path.join(TEST_DIR, "testchangelog_formatting.md"),
         announcer.ChangeLogRenderer,
     )
-    (details, _diff_url) = cl.get_version_details("0.1.0")
+    (details, _diff_url, _sections) = cl.get_version_details("0.1.0")
     assert details == (
-        u"0.1.0 - 2018-09-26\n"
+        "0.1.0 - 2018-09-26\n"
         "*Tested*\n"
         "\u2022 Testing `singlequote` works properly.\n"
         "\u2022 Testing `triplequote` works properly.\n"
