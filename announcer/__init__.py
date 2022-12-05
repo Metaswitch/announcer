@@ -90,7 +90,9 @@ def announce_slack(
 
     # Get the version information
     log.info("Getting version %s info from changelog", changelogversion)
-    (changelog_info, diff_url) = changelog.get_version_details(changelogversion)
+    (changelog_info, diff_url, sections) = changelog.get_version_details(
+        changelogversion
+    )
 
     # Announce the information to Slack.
     log.info("Announcing information to Slack")
@@ -165,7 +167,9 @@ def announce_teams(
 
     # Get the version information
     log.info("Getting version %s info from changelog", changelogversion)
-    (changelog_info, diff_url) = changelog.get_version_details(changelogversion)
+    (changelog_info, diff_url, sections) = changelog.get_version_details(
+        changelogversion
+    )
 
     # Announce the information to Teams.
     log.info("Announcing information to Teams")
@@ -208,14 +212,15 @@ def announce_teams(
             }
         )
 
-    section1 = {"text": changelog_info}
+    if not sections:
+        sections = [{"text": changelog_info}]
 
     message_data = {
         "@type": "MessageCard",
         "@context": "https://schema.org/extensions",
         "summary": "{0} {1}".format(projectname, changelogversion),
         "title": "{0} {1}".format(projectname, changelogversion),
-        "sections": [section1],
+        "sections": sections,
     }
 
     if actions:
@@ -235,16 +240,19 @@ class Changelog(object):
         self.filename = filename
         self.renderer_class = renderer_class
 
-    def get_version_details(self, version: str) -> Tuple[str, Optional[str]]:
+    def get_version_details(
+        self, version: str
+    ) -> Tuple[str, Optional[str], List[Dict[str, str]]]:
         with open(self.filename, "r") as f:
             document = mistletoe.Document(f)
 
             with self.renderer_class(version) as renderer:
                 rendered = renderer.render(document)
                 diff_url = renderer.diff_url
+                sections = renderer.sections
 
         log.debug("Diff URL: %s", diff_url)
-        return rendered, diff_url
+        return rendered, diff_url, sections
 
 
 def main():

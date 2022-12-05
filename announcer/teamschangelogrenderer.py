@@ -6,6 +6,7 @@
 import collections
 import logging
 from mistletoe.html_renderer import HTMLRenderer
+from typing import List, Dict
 
 log = logging.getLogger(__name__)
 
@@ -29,6 +30,7 @@ class TeamsChangeLogRenderer(HTMLRenderer):
         super().__init__(*extras)
         self.version = version
         self.diff_url = None
+        self.sections: List[Dict[str, str]] = []
 
     def __exit__(self, *args):
         super().__exit__(*args)
@@ -78,6 +80,10 @@ class TeamsChangeLogRenderer(HTMLRenderer):
         log.debug("Document contents %r", to_render)
 
         rendered = [self.render(child) for child in to_render]
+
+        # Store the rendered children as sections
+        self.sections = [{"text": section} for section in rendered]
+
         return "".join(rendered)
 
     def render(self, token):
