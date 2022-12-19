@@ -22,7 +22,7 @@ pytest = "^7.2"
 flake8 = "^5.0"
 werkzeug = "^2.2.2"
 pytest-httpserver = "^1.0.6"
-tox = "^3.27"
+tox = "^3.28"
 pytest-cov = "^4.0"
 types-requests = "^2.28.11"
 
