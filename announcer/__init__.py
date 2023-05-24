@@ -71,6 +71,7 @@ def announce(args: argparse.Namespace) -> None:
             args.changelogversion,
             args.changelogfile,
             args.projectname,
+            args.compatibility_teams_sections,
         )
     else:
         raise ValueError("Unknown target! {}".format(args.target))
@@ -164,6 +165,7 @@ def announce_teams(
     changelogversion: str,
     changelogfile: str,
     projectname: str,
+    compatibility_teams_sections: bool,
 ):
     """Announce changelog changes to Teams"""
     # Get the changelog
@@ -172,7 +174,7 @@ def announce_teams(
 
     # Get the version information
     log.info("Getting version %s info from changelog", changelogversion)
-    (changelog_info, diff_url, sections) = changelog.get_version_details(
+    (changelog_info, diff_url, compatibility_sections) = changelog.get_version_details(
         changelogversion
     )
 
@@ -217,7 +219,12 @@ def announce_teams(
             }
         )
 
-    if not sections:
+    if compatibility_teams_sections and compatibility_sections:
+        # Both compatibility has been requested and compatibility sections exist,
+        # use them.
+        sections = compatibility_sections
+    else:
+        # Use the generated HTML as the only section
         sections = [{"text": changelog_info}]
 
     message_data = {
@@ -318,6 +325,11 @@ def main():
         dest="username",
         help="The username that the announcement will be made as "
         "(e.g. announcer). Valid for: Slack",
+    )
+    parser.add_argument(
+        "--compatibility-teams-sections",
+        action="store_true",
+        help="Compatibility option - sends Teams messages in multiple sections",
     )
 
     icons = parser.add_mutually_exclusive_group()

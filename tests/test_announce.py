@@ -1,4 +1,5 @@
 from argparse import Namespace
+from typing import Optional
 import announcer
 import json
 import os
@@ -59,14 +60,15 @@ TESTANNOUNCE1_ATTACHMENTS = [
 
 
 def make_args(
-    webhook: str = None,
-    changelogversion: str = None,
-    changelogfile: str = None,
-    projectname: str = None,
-    username: str = None,
+    webhook: Optional[str] = None,
+    changelogversion: Optional[str] = None,
+    changelogfile: Optional[str] = None,
+    projectname: Optional[str] = None,
+    username: Optional[str] = None,
     target: announcer.TargetTypes = announcer.TargetTypes.SLACK,
-    iconurl: str = None,
-    iconemoji: str = None,
+    iconurl: Optional[str] = None,
+    iconemoji: Optional[str] = None,
+    compatibility_teams_sections: bool = False,
 ):
     return Namespace(
         webhook=webhook,
@@ -77,6 +79,7 @@ def make_args(
         target=target,
         iconurl=iconurl,
         iconemoji=iconemoji,
+        compatibility_teams_sections=compatibility_teams_sections,
     )
 
 
@@ -249,6 +252,57 @@ def test_announce_teams(httpserver):
                 "title": "testchangelog_formatting 0.1.0",
                 "sections": [
                     {
+                        "text": '<h2><a href="https://github.com/Metaswitch/announcer/tree/0.1.0">0.1.0</a> - 2018-09-26</h2><h3>Tested</h3><ul>\n<li>Testing <code>singlequote</code> works properly.</li>\n<li>Testing <code>triplequote</code> works properly.</li>\n<li>Testing <del>strikethrough</del> works properly.</li>\n<li>Testing <em>italics</em> work properly.</li>\n<li>Testing <strong>bolds</strong> work properly.</li>\n</ul><blockquote>\n<p>Testing quotes work properly</p>\n</blockquote><ul>\n<li>Testing top level list\n<ul>\n<li>Testing mid level list1</li>\n<li>Testing mid level list2</li>\n</ul>\n</li>\n<li>Testing autolink as <a href="http://www.example.com/autolink">http://www.example.com/autolink</a></li>\n<li>Testing normal link as <a href="http://www.example.com/normallink">Normal &amp; Link</a></li>\n<li>Testing images as <img src="http://www.example.com/icon48.png" alt="Test Image" /></li>\n</ul><hr /><ol>\n<li>Numbered list</li>\n<li>Second entry</li>\n</ol><pre><code class="language-javascript">var s = &quot;JavaScript syntax highlighting&quot;;\nalert(s);\n</code></pre><ol start="2">\n<li>List that starts at 2</li>\n</ol>'
+                    }
+                ],
+                "potentialAction": [
+                    {
+                        "@type": "OpenUri",
+                        "name": "View changes",
+                        "targets": [
+                            {
+                                "os": "default",
+                                "uri": "https://github.com/Metaswitch/announcer/tree/0.1.0",
+                            }
+                        ],
+                    },
+                    {
+                        "@type": "OpenUri",
+                        "name": "View CHANGELOG.md",
+                        "targets": [
+                            {
+                                "os": "default",
+                                "uri": "https://github.com/Metaswitch/announcer/blob/0.1.0/CHANGELOG.md",
+                            }
+                        ],
+                    },
+                ],
+            }
+        )
+    )
+
+    args = make_args(
+        webhook=httpserver.url_for("/teams"),
+        changelogversion="0.1.0",
+        changelogfile=os.path.join(TEST_DIR, "testchangelog_formatting.md"),
+        projectname="testchangelog_formatting",
+        target=announcer.TargetTypes.TEAMS,
+    )
+
+    announcer.announce(args)
+
+
+def test_announce_teams_compatibility(httpserver):
+    """Test the announce Teams function"""
+    httpserver.expect_request("/teams").respond_with_handler(
+        verify_dict(
+            {
+                "@type": "MessageCard",
+                "@context": "https://schema.org/extensions",
+                "summary": "testchangelog_formatting 0.1.0",
+                "title": "testchangelog_formatting 0.1.0",
+                "sections": [
+                    {
                         "text": '<h2><a href="https://github.com/Metaswitch/announcer/tree/0.1.0">0.1.0</a> - 2018-09-26</h2>'
                     },
                     {"text": "<h3>Tested</h3>"},
@@ -302,6 +356,7 @@ def test_announce_teams(httpserver):
         changelogfile=os.path.join(TEST_DIR, "testchangelog_formatting.md"),
         projectname="testchangelog_formatting",
         target=announcer.TargetTypes.TEAMS,
+        compatibility_teams_sections=True,
     )
 
     announcer.announce(args)
