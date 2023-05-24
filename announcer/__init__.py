@@ -9,13 +9,15 @@ import json
 import logging
 import re
 import sys
-from typing import Tuple, Optional, List, Dict, Any
 from enum import Enum
+from typing import Any, Dict, List, Optional, Tuple
+
+import mistletoe
+import requests
+from mistletoe.base_renderer import BaseRenderer
 
 from .changelogrenderer import ChangeLogRenderer
 from .teamschangelogrenderer import TeamsChangeLogRenderer
-import mistletoe
-import requests
 
 log = logging.getLogger(__name__)
 
@@ -79,9 +81,9 @@ def announce_slack(
     changelogversion: str,
     changelogfile: str,
     projectname: str,
-    username: str = None,
-    icon_url: str = None,
-    icon_emoji: str = None,
+    username: Optional[str] = None,
+    icon_url: Optional[str] = None,
+    icon_emoji: Optional[str] = None,
 ):
     """Announce changelog changes to Slack"""
     # Get the changelog
@@ -242,7 +244,7 @@ def announce_teams(
 
 
 class Changelog(object):
-    def __init__(self, filename: str, renderer_class: mistletoe.BaseRenderer) -> None:
+    def __init__(self, filename: str, renderer_class: BaseRenderer) -> None:
         self.filename = filename
         self.renderer_class = renderer_class
 

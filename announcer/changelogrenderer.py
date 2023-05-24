@@ -134,7 +134,7 @@ class ChangeLogRenderer(BaseRenderer):
         return template.format(self.render_to_plaintext(token))
 
     def render_quote(self, token):
-        inner = self.render_to_inner(token)
+        inner = self.render_inner(token)
         return "> {}\n".format(inner)
 
     def render_paragraph(self, token):
