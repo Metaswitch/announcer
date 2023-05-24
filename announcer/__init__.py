@@ -108,9 +108,9 @@ def announce_slack(
     if base_url:
         pretext.append("({0})".format(base_url))
 
-    attachments = [
+    attachments: List[Dict[str, Any]] = [
         {"color": "good", "pretext": " ".join(pretext), "text": changelog_info}
-    ]  # type: List[Dict[str, Any]]
+    ]
 
     fallback = []
     actions = []
@@ -134,7 +134,7 @@ def announce_slack(
         )
 
     # Construct the data to send to the endpoint.
-    message_data = {"attachments": attachments}  # type: Dict[str, Any]
+    message_data: Dict[str, Any] = {"attachments": attachments}
 
     if username:
         message_data["username"] = username
@@ -149,7 +149,10 @@ def announce_slack(
 
     # Send the data using requests to the webhook.
     r = requests.post(
-        webhook, json.dumps(message_data), headers={"Content-Type": "application/json"}
+        webhook,
+        json.dumps(message_data),
+        headers={"Content-Type": "application/json"},
+        timeout=10,
     )
     r.raise_for_status()
 
@@ -230,7 +233,10 @@ def announce_teams(
 
     # Send the data using requests to the webhook.
     r = requests.post(
-        webhook, json.dumps(message_data), headers={"Content-Type": "application/json"}
+        webhook,
+        json.dumps(message_data),
+        headers={"Content-Type": "application/json"},
+        timeout=10,
     )
     r.raise_for_status()
 
