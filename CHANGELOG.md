@@ -9,6 +9,7 @@ version number is tracked in the file `pyproject.toml`.
 ## [Unreleased]
 
 ### Breaking Changes
+- Minimum version for Python is now 3.8.1 due to tox and flake8 updates
 
 ### Added
 
