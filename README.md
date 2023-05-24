@@ -1,4 +1,4 @@
-[![Github build](https://img.shields.io/github/workflow/status/metaswitch/announcer/Announcer)](https://github.com/Metaswitch/announcer)
+[![Github build](https://img.shields.io/github/actions/workflow/status/metaswitch/announcer/steps.yml?branch=main)](https://github.com/Metaswitch/announcer)
 [![pypi version](https://img.shields.io/pypi/v/announcer)](https://pypi.org/project/announcer/)
 [![docker pulls](https://img.shields.io/docker/pulls/metaswitch/announcer)](https://hub.docker.com/r/metaswitch/announcer)
 
