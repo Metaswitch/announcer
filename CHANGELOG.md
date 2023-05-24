@@ -14,6 +14,7 @@ version number is tracked in the file `pyproject.toml`.
 ### Added
 
 ### Fixed
+- Add dependabot setup for Github actions
 
 ## [4.0.1] - 2022-12-05
 
