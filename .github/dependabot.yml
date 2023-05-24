@@ -13,3 +13,11 @@ updates:
     - 0.3.6
     - 0.3.7
     - 0.3.8
+
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    # Check for updates to GitHub Actions every week
+    interval: "weekly"
+  reviewers:
+  - maxdymond
