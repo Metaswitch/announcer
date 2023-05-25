@@ -23,7 +23,7 @@ flake8 = "^6.0"
 werkzeug = "^2.2.2"
 pytest-httpserver = "^1.0.6"
 tox = "^4"
-pytest-cov = "^4.0"
+pytest-cov = "^4.1"
 types-requests = "^2.28.11"
 
 [tool.poetry.scripts]
