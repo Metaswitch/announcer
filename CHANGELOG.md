@@ -12,6 +12,8 @@ version number is tracked in the file `pyproject.toml`.
 - Minimum version for Python is now 3.8.1 due to tox and flake8 updates
 
 ### Added
+- Reverted the Teams behaviour added in `4.0.0`; put it behind the
+  `--compatibility-teams-sections` flag.
 
 ### Fixed
 - Add dependabot setup for Github actions

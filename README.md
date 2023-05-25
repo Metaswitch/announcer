@@ -22,7 +22,8 @@ pip install announcer
 ## Tool usage
 
 ```
-usage: announce [-h] (--webhook WEBHOOK | --slackhook WEBHOOK) [--target {slack,teams}] --changelogversion CHANGELOGVERSION --changelogfile CHANGELOGFILE --projectname PROJECTNAME [--username USERNAME] [--iconurl ICONURL | --iconemoji ICONEMOJI]
+usage: announce [-h] (--webhook WEBHOOK | --slackhook WEBHOOK) [--target {slack,teams}] --changelogversion CHANGELOGVERSION --changelogfile CHANGELOGFILE --projectname PROJECTNAME
+                [--username USERNAME] [--compatibility-teams-sections] [--iconurl ICONURL | --iconemoji ICONEMOJI]
 
 Announce CHANGELOG changes on Slack and Microsoft Teams
 
@@ -39,6 +40,8 @@ optional arguments:
   --projectname PROJECTNAME
                         The name of the project to announce (e.g. announcer)
   --username USERNAME   The username that the announcement will be made as (e.g. announcer). Valid for: Slack
+  --compatibility-teams-sections
+                        Compatibility option - sends Teams messages in multiple sections
   --iconurl ICONURL     A URL to use for the user icon in the announcement. Valid for: Slack
   --iconemoji ICONEMOJI
                         An emoji code to use for the user icon in the announcement (e.g. party_parrot). Valid for: Slack
