@@ -54,7 +54,7 @@ Announcer builds and publishes a Docker image that you can integrate into your `
 ```
 announce:
   stage: announce
-  image: metaswitch/announcer:4.0.1
+  image: metaswitch/announcer:5.0.0
   script:
    - announce --webhook <webhook address>
               --changelogversion $CI_COMMIT_REF_NAME
