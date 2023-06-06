@@ -273,13 +273,6 @@ class Changelog(object):
 def main():
     """Main handling function."""
 
-    # Set up basic logging
-    logging.basicConfig(
-        format="%(asctime)s %(levelname)-5.5s %(message)s",
-        stream=sys.stdout,
-        level=logging.DEBUG,
-    )
-
     # Run main script.
     parser = argparse.ArgumentParser(
         description="Announce CHANGELOG changes on Slack and Microsoft Teams"
@@ -345,7 +338,36 @@ def main():
         "(e.g. party_parrot). Valid for: Slack",
     )
 
+    volume = parser.add_mutually_exclusive_group()
+    volume.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Enable verbose logging",
+    )
+    volume.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+        help="Enable quiet output",
+    )
+
     args = parser.parse_args()
+
+    # Set up logging dependent on the options given
+    if args.verbose:
+        level = logging.DEBUG
+    elif args.quiet:
+        level = logging.WARNING
+    else:
+        level = logging.INFO
+
+    # Set up basic logging
+    logging.basicConfig(
+        format="%(asctime)s %(levelname)-5.5s %(message)s",
+        stream=sys.stdout,
+        level=level,
+    )
 
     try:
         announce(args)
