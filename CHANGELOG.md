@@ -9,11 +9,20 @@ version number is tracked in the file `pyproject.toml`.
 ## [Unreleased]
 
 ### Breaking Changes
+
+### Added
+
+### Fixed
+
+## [5.0.0] - 2023-06-06
+
+### Breaking Changes
 - Minimum version for Python is now 3.8.1 due to tox and flake8 updates
 
 ### Added
 - Reverted the Teams behaviour added in `4.0.0`; put it behind the
   `--compatibility-teams-sections` flag.
+- Added controllable log level
 
 ### Fixed
 - Add dependabot setup for Github actions
@@ -92,7 +101,8 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Added
 
-[unreleased]: https://github.com/Metaswitch/announcer/compare/4.0.1...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/5.0.0...HEAD
+[5.0.0]: https://github.com/Metaswitch/announcer/compare/4.0.1...5.0.0
 [4.0.1]: https://github.com/Metaswitch/announcer/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/Metaswitch/announcer/compare/3.0.2...4.0.0
 [3.0.2]: https://github.com/Metaswitch/announcer/compare/3.0.1...3.0.2
