@@ -5,7 +5,7 @@
 
 import collections
 import logging
-from mistletoe.html_renderer import HTMLRenderer
+from mistletoe.html_renderer import HtmlRenderer
 from typing import List, Dict
 
 log = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ class ListCounter(object):
         return current
 
 
-class TeamsChangeLogRenderer(HTMLRenderer):
+class TeamsChangeLogRenderer(HtmlRenderer):
     def __init__(self, version: str, *extras):
         super().__init__(*extras)
         self.version = version
