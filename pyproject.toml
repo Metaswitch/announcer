@@ -13,7 +13,7 @@ requests = "^2.19"
 mistletoe = "^1"
 
 [tool.poetry.dev-dependencies]
-pylint = "^3.0"
+pylint = "^3.2"
 wheel = "^0.43.0"
 mypy = "^1.10"
 yamllint = "^1.35"
