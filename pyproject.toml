@@ -19,7 +19,7 @@ mypy = "^1.10"
 yamllint = "^1.35"
 bandit = "^1.7"
 pytest = "^7.4"
-flake8 = "^6.1"
+flake8 = "^7.0"
 werkzeug = "^3.0.3"
 pytest-httpserver = "^1.0.6"
 tox = "^4"
@@ -30,7 +30,7 @@ types-requests = "^2.32.0"
 announce = "announcer.__init__:main"
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "^6.1.0"
+flake8 = ">=6.1,<8.0"
 tox = "^4.5.1"
 
 [build-system]
