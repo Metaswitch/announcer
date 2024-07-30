@@ -37,7 +37,7 @@ class TeamsChangeLogRenderer(HtmlRenderer):
         self.diff_url = None
 
     def render_to_plaintext(self, token):
-        if hasattr(token, "children"):
+        if token.children is not None:
             rendered = [self.render_to_plaintext(child) for child in token.children]
             return "".join(rendered)
         else:
