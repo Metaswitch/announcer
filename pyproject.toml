@@ -15,7 +15,7 @@ mistletoe = "^1"
 [tool.poetry.dev-dependencies]
 pylint = "^3.2"
 wheel = "^0.43.0"
-mypy = "^1.10"
+mypy = "^1.11"
 yamllint = "^1.35"
 bandit = "^1.7"
 pytest = "^8.3"
