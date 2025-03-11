@@ -2,7 +2,7 @@
 
 echo "Announce changes to the world!"
 
-VERSION=$(tomlq -r '.tool.poetry.version' pyproject.toml)
+VERSION=$(tomlq -r '.project.version' pyproject.toml)
 echo "Version: $VERSION"
 
 # Send announcement to a standalone test webhook.
