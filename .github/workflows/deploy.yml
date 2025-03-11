@@ -15,9 +15,10 @@ jobs:
         with:
           python-version: 3.9
       - uses: actions/checkout@v4
-      - run: bash install.sh
+      # Get dependencies
+      - run: pip install uv yq
       # Build the package and publish it.
-      - run: poetry build
+      - run: uv build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
       # Build the docker image and publish it
