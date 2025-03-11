@@ -14,6 +14,11 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Fixed
 
+## [6.0.1] - 2025-03-11
+
+### Fixed
+- Fix PyPI publishing
+
 ## [6.0.0] - 2025-03-11
 
 ### Breaking Changes
@@ -109,7 +114,8 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Added
 
-[unreleased]: https://github.com/Metaswitch/announcer/compare/6.0.0...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/6.0.1...HEAD
+[6.0.1]: https://github.com/Metaswitch/announcer/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/Metaswitch/announcer/compare/5.0.0...6.0.0
 [5.0.0]: https://github.com/Metaswitch/announcer/compare/4.0.1...5.0.0
 [4.0.1]: https://github.com/Metaswitch/announcer/compare/4.0.0...4.0.1
