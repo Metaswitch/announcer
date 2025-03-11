@@ -67,8 +67,8 @@ Ready to contribute? Here's how to set up `announcer` for local development.
     ```shell
     $ cd announcer/
     $ python3 -m venv venv
-    $ pip install poetry
-    $ poetry install
+    $ pip install uv
+    $ uv pip install -e .
     ```
 
 4. Create a branch for local development::

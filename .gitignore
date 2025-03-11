@@ -1,5 +1,6 @@
 .idea/
 venv*/
+.venv/
 build/
 dist/
 announcer.egg-info/

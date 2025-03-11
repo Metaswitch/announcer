@@ -1,35 +1,36 @@
 [project]
 name = "announcer"
-description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack and Microsoft Teams"
-license = "MIT"
-keywords = ['slack', 'teams']
 version = "6.0.1"
+description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack and Microsoft Teams"
+authors = [{ name = "Max Dymond", email = "max.dymond@metaswitch.com" }]
+requires-python = ">=3.9,<4.0.0"
 readme = "README.md"
-authors = [{name = "Max Dymond", email = "max.dymond@metaswitch.com"}]
-requires-python = '>=3.9,<4.0.0'
-dependencies = ['requests (>=2.19,<3.0)', 'mistletoe (>=1,<2)']
+license = {file = "LICENSE.md"}
+keywords = [
+    "slack",
+    "teams",
+]
+dependencies = [
+    "requests (>=2.19,<3.0)",
+    "mistletoe (>=1,<2)",
+]
 
 [project.scripts]
 announce = "announcer.__init__:main"
 
-[tool.poetry]
-requires-poetry = '>=2.0'
-
-[tool.poetry.group.dev.dependencies]
-pylint = "3.3.5"
-wheel = "0.45.1"
-mypy = "1.15.0"
-yamllint = "1.36.0"
-bandit = "1.8.3"
-pytest = "8.3.5"
-flake8 = "7.1.2"
-werkzeug = "3.1.3"
-pytest-httpserver = "1.1.2"
-tox = "4.24.2"
-pytest-cov = "6.0"
-types-requests = "^2.32.0"
-isort = "6.0.1"
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+[dependency-groups]
+dev = [
+    "pylint==3.3.5",
+    "wheel==0.45.1",
+    "mypy==1.15.0",
+    "yamllint==1.36.0",
+    "bandit==1.8.3",
+    "pytest==8.3.5",
+    "flake8==7.1.2",
+    "werkzeug==3.1.3",
+    "pytest-httpserver==1.1.2",
+    "tox==4.24.2",
+    "pytest-cov==6.0",
+    "types-requests>=2.32.0,<3",
+    "isort==6.0.1",
+]
