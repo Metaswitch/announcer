@@ -6,6 +6,9 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
     steps:
       - name: 'Set up Python'
         uses: actions/setup-python@v5
@@ -13,12 +16,15 @@ jobs:
           python-version: 3.9
       - uses: actions/checkout@v4
       - run: bash install.sh
+      # Build the package and publish it.
+      - run: poetry build
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+      # Build the docker image and publish it
       - run: bash deploy.sh
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-          PYPI_USER: ${{ secrets.PYPI_USER }}
-          PYPI_PASS: ${{ secrets.PYPI_PASS }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: bash after_deploy.sh
         env:
