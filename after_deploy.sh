@@ -12,7 +12,7 @@ docker run \
   metaswitch/announcer:$VERSION \
     announce \
     --webhook $WEBHOOK \
-    --target teams \
+    --target slack \
     --changelogversion $VERSION \
     --changelogfile /announcer/CHANGELOG.md \
     --projectname announcer

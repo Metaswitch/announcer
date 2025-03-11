@@ -11,6 +11,7 @@ version number is tracked in the file `pyproject.toml`.
 ### Breaking Changes
 
 ### Added
+- Minimum version for Python is now 3.9
 
 ### Fixed
 
