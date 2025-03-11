@@ -3,7 +3,7 @@ name = "announcer"
 description = "Announce changes in keepachangelog-style CHANGELOG.md files to Slack and Microsoft Teams"
 license = "MIT"
 keywords = ['slack', 'teams']
-version = "5.0.0"
+version = "6.0.0"
 readme = "README.md"
 authors = [{name = "Max Dymond", email = "max.dymond@metaswitch.com"}]
 requires-python = '>=3.9,<4.0.0'

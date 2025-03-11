@@ -9,9 +9,15 @@ version number is tracked in the file `pyproject.toml`.
 ## [Unreleased]
 
 ### Breaking Changes
-- Minimum version for Python is now 3.9
 
 ### Added
+
+### Fixed
+
+## [6.0.0] - 2025-03-11
+
+### Breaking Changes
+- Minimum version for Python is now 3.9
 
 ### Fixed
 - Update to latest dependencies
@@ -103,7 +109,8 @@ version number is tracked in the file `pyproject.toml`.
 
 ### Added
 
-[unreleased]: https://github.com/Metaswitch/announcer/compare/5.0.0...HEAD
+[unreleased]: https://github.com/Metaswitch/announcer/compare/6.0.0...HEAD
+[6.0.0]: https://github.com/Metaswitch/announcer/compare/5.0.0...6.0.0
 [5.0.0]: https://github.com/Metaswitch/announcer/compare/4.0.1...5.0.0
 [4.0.1]: https://github.com/Metaswitch/announcer/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/Metaswitch/announcer/compare/3.0.2...4.0.0
