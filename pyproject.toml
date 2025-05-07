@@ -20,17 +20,17 @@ announce = "announcer.__init__:main"
 
 [dependency-groups]
 dev = [
-    "pylint==3.3.5",
+    "pylint==3.3.7",
     "wheel==0.45.1",
     "mypy==1.15.0",
-    "yamllint==1.36.0",
+    "yamllint==1.37.1",
     "bandit==1.8.3",
     "pytest==8.3.5",
-    "flake8==7.1.2",
+    "flake8==7.2.0",
     "werkzeug==3.1.3",
-    "pytest-httpserver==1.1.2",
-    "tox==4.24.2",
-    "pytest-cov==6.0",
+    "pytest-httpserver==1.1.3",
+    "tox==4.25.0",
+    "pytest-cov==6.1.1",
     "types-requests>=2.32.0,<3",
     "isort==6.0.1",
 ]
