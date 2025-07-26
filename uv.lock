@@ -49,7 +49,7 @@ dev = [
     { name = "pytest", specifier = "==8.4.1" },
     { name = "pytest-cov", specifier = "==6.2.1" },
     { name = "pytest-httpserver", specifier = "==1.1.3" },
-    { name = "tox", specifier = "==4.28.1" },
+    { name = "tox", specifier = "==4.28.3" },
     { name = "types-requests", specifier = ">=2.32.0,<3" },
     { name = "werkzeug", specifier = "==3.1.3" },
     { name = "wheel", specifier = "==0.45.1" },
@@ -812,7 +812,7 @@ wheels = [
 
 [[package]]
 name = "tox"
-version = "4.28.1"
+version = "4.28.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cachetools" },
@@ -827,9 +827,9 @@ dependencies = [
     { name = "typing-extensions", version = "4.14.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "virtualenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2c/a3/6fdc3f17aad7f2971739c6efc537a692d619c54acb224d90e62733346a60/tox-4.28.1.tar.gz", hash = "sha256:227ce1fdfea7763107aed3a8ac87d74b1bd1240ad7dd9c37fc2cb2b318006520", size = 199598, upload-time = "2025-07-23T06:16:39.555Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/22/ca/9114e959d8b18f891327b58346a7b6ed6fc71815504fb2f3773dd5950b14/tox-4.28.3.tar.gz", hash = "sha256:b91db7219e5242002cf4040a299c8852026d6af35fcd21274d456fb62dafee7b", size = 199617, upload-time = "2025-07-26T00:45:59.34Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b9/60/0ba9aa30a0a3d0faaebeadd9c847812a929416a4acda50d92c7079a9ec00/tox-4.28.1-py3-none-any.whl", hash = "sha256:d5c84de6efc5d7e8acadb09528943e87ee501a35e064cf852082bc600485c13d", size = 173973, upload-time = "2025-07-23T06:16:37.54Z" },
+    { url = "https://files.pythonhosted.org/packages/51/14/bc4935af126b676334ace4c44f451fa4f4a8b2dcfec75b11929d0aff8b3f/tox-4.28.3-py3-none-any.whl", hash = "sha256:1debe9daf0b7e64d425ef99a17292b0792385686b1d541df34c7298211e99269", size = 174011, upload-time = "2025-07-26T00:45:57.474Z" },
 ]
 
 [[package]]
