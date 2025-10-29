@@ -1,3 +1,4 @@
+# Copyright (c) Alianza, Inc. All rights reserved.
 name: Announcer
 'on':
   push:
@@ -14,9 +15,9 @@ jobs:
         os:
           - ubuntu-latest
         python-version:
+          - "3.12"
           - "3.11"
           - "3.10"
-          - "3.9"
     steps:
       - name: 'Set up Python ${{ matrix.python-version }}'
         uses: actions/setup-python@v6

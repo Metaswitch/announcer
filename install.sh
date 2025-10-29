@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) Alianza, Inc. All rights reserved.
 
 set -ex
 
