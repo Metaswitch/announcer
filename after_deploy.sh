@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright (c) Alianza, Inc. All rights reserved.
 
 echo "Announce changes to the world!"
 

@@ -13,7 +13,7 @@ It is available as a Python package, or as a Docker container for use in CI.
 
 ## Installation
 
-Install this tool using pip:
+Install this tool using pip (Python 3.10 or newer is required):
 
 ```
 pip install announcer

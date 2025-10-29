@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright (c) Alianza, Inc. All rights reserved.
 
 VERSION=$(tomlq -r '.project.version' pyproject.toml)
 echo "Version: $VERSION"

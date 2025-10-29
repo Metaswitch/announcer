@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Copyright (C) Metaswitch Networks.
+# Copyright (c) Alianza, Inc. All rights reserved.
 """A tool for announcing keepachangelog format logs to Slack and Microsoft
-   Teams channels"""
+Teams channels"""
 
 import argparse
 import json
@@ -251,7 +251,7 @@ def announce_teams(
 
 
 class Changelog(object):
-    def __init__(self, filename: str, renderer_class: BaseRenderer) -> None:
+    def __init__(self, filename: str, renderer_class: type[BaseRenderer]) -> None:
         self.filename = filename
         self.renderer_class = renderer_class
 

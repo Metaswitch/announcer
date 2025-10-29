@@ -1,4 +1,5 @@
-FROM python:3.12-alpine3.17
+# Copyright (c) Alianza, Inc. All rights reserved.
+FROM python:3.13-alpine
 
 ARG VERSION
 

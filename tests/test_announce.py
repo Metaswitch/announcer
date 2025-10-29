@@ -1,3 +1,4 @@
+# Copyright (c) Alianza, Inc. All rights reserved.
 from argparse import Namespace
 from typing import Optional
 import announcer

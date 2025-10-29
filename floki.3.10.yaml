@@ -1,0 +1,5 @@
+# Copyright (c) Alianza, Inc. All rights reserved.
+image: python:3.10
+shell: bash
+init:
+  - bash install.sh
