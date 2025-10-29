@@ -33,7 +33,7 @@ dev = [
     "tox==4.28.4",
     "pytest-cov==7.0.0",
     "types-requests>=2.32.0,<3",
-    "isort==6.0.1",
+    "isort==7.0.0",
 ]
 
 [build-system]
