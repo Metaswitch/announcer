@@ -1,5 +1,5 @@
 # Copyright (c) Alianza, Inc. All rights reserved.
-FROM python:3.13-alpine@sha256:e5fa639e49b85986c4481e28faa2564b45aa8021413f31026c3856e5911618b1
+FROM python:3.14-alpine@sha256:faee120f7885a06fcc9677922331391fa690d911c020abb9e8025ff3d908e510
 
 ARG VERSION
 
