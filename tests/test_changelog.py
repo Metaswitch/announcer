@@ -1,20 +1,24 @@
 # Copyright (c) Alianza, Inc. All rights reserved.
-import announcer
+"""Tests for the ChangelogRenderer."""
+
 import os
 
+import announcer
 
 TEST_DIR = os.path.dirname(__file__)
 
 
-def test_changelog_simple():
+def test_changelog_simple() -> None:
+    """Test that we can parse a simple changelog."""
     cl = announcer.Changelog(
         os.path.join(TEST_DIR, "testchangelog_simple.md"), announcer.ChangeLogRenderer
     )
     (details, _diff_url, _sections) = cl.get_version_details("0.1.0")
-    assert details == ("0.1.0 - 2018-09-26\n" "*Added*\n" "\u2022 Initial version\n")
+    assert details == ("0.1.0 - 2018-09-26\n*Added*\n\u2022 Initial version\n")
 
 
-def test_changelog_formatting():
+def test_changelog_formatting() -> None:
+    """Test that we can parse a changelog with various markdown formatting."""
     cl = announcer.Changelog(
         os.path.join(TEST_DIR, "testchangelog_formatting.md"),
         announcer.ChangeLogRenderer,

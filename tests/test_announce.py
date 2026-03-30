@@ -1,19 +1,24 @@
 # Copyright (c) Alianza, Inc. All rights reserved.
-from argparse import Namespace
-from typing import Optional
-import announcer
+"""Tests for the announce function."""
+
 import json
 import os
 import sys
-import pytest
+from argparse import Namespace
+from typing import Callable, Optional
 from unittest.mock import patch
-from werkzeug.wrappers import Request, Response
+
 from pytest_httpserver import HTTPServer
+from werkzeug.wrappers import Request, Response
+
+import announcer
 
 TEST_DIR = os.path.dirname(__file__)
 
 
-def verify_dict(check_data: dict):
+def verify_dict(check_data: dict[str, object]) -> Callable[[Request], Response]:
+    """Return a function that verifies the request data matches the given dict."""
+
     def _verify(request: Request) -> Response:
         slack_data = json.loads(request.data.decode("utf-8"))
         assert slack_data == check_data
@@ -22,7 +27,9 @@ def verify_dict(check_data: dict):
     return _verify
 
 
-def print_dict(check_data: dict):
+def print_dict(_check_data: dict[str, object]) -> Callable[[Request], Response]:
+    """Return a function that prints the request data."""
+
     def _verify(request: Request) -> Response:
         slack_data = json.loads(request.data.decode("utf-8"))
         print(slack_data)
@@ -70,7 +77,8 @@ def make_args(
     iconurl: Optional[str] = None,
     iconemoji: Optional[str] = None,
     compatibility_teams_sections: bool = False,
-):
+) -> Namespace:
+    """Make a Namespace with the given arguments."""
     return Namespace(
         webhook=webhook,
         changelogversion=changelogversion,
@@ -84,7 +92,8 @@ def make_args(
     )
 
 
-def test_announce1(httpserver: HTTPServer):
+def test_announce1(httpserver: HTTPServer) -> None:
+    """Test the announce function with a simple changelog and mocked HTTP server."""
     username = "test_announce1"
 
     httpserver.expect_request("/slack").respond_with_handler(
@@ -103,9 +112,10 @@ def test_announce1(httpserver: HTTPServer):
     announcer.announce(args)
 
 
-def test_announce_party_parrot(httpserver):
+def test_announce_party_parrot(httpserver: HTTPServer) -> None:
+    """Test the announce function with a party parrot icon."""
     username = "test_announce_party_parrot"
-    icon_emoji = ("party_parrot",)
+    icon_emoji = "party_parrot"
 
     httpserver.expect_request("/slack").respond_with_handler(
         verify_dict(
@@ -129,7 +139,8 @@ def test_announce_party_parrot(httpserver):
     announcer.announce(args)
 
 
-def test_announce_url(httpserver):
+def test_announce_url(httpserver: HTTPServer) -> None:
+    """Test the announce function with a custom icon URL."""
     username = "test_announce_url"
     icon_url = "https://www.gravatar.com/avatar/16514A0927AE04EC8F7916F4C01479F2?s=48"
 
@@ -155,7 +166,7 @@ def test_announce_url(httpserver):
     announcer.announce(args)
 
 
-def test_announce_main(httpserver):
+def test_announce_main(httpserver: HTTPServer) -> None:
     """Test the main announce function."""
     version = "1.0.0"
     changelog = os.path.join(TEST_DIR, "testannounce1.md")
@@ -192,7 +203,7 @@ def test_announce_main(httpserver):
         announcer.main()
 
 
-def test_announce_tags(httpserver):
+def test_announce_tags(httpserver: HTTPServer) -> None:
     """Test the announce function with a file that has non-standard references."""
     username = "test_announce_tags"
 
@@ -242,7 +253,7 @@ def test_announce_tags(httpserver):
     announcer.announce(args)
 
 
-def test_announce_teams(httpserver):
+def test_announce_teams(httpserver: HTTPServer) -> None:
     """Test the announce Teams function"""
     httpserver.expect_request("/teams").respond_with_handler(
         verify_dict(
@@ -294,7 +305,7 @@ def test_announce_teams(httpserver):
     announcer.announce(args)
 
 
-def test_announce_teams_compatibility(httpserver):
+def test_announce_teams_compatibility(httpserver: HTTPServer) -> None:
     """Test the announce Teams function"""
     httpserver.expect_request("/teams").respond_with_handler(
         verify_dict(

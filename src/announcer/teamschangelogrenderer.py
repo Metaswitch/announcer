@@ -3,90 +3,41 @@
 # Copyright (C) Metaswitch Networks.
 """TeamsChangeLogRenderer for mistletoe."""
 
-import collections
 import logging
+from typing import Optional
+
+from mistletoe import block_token, token
 from mistletoe.html_renderer import HtmlRenderer
-from typing import List, Dict
+
+from announcer.common import render_block_document
 
 log = logging.getLogger(__name__)
 
 
-ListEntry = collections.namedtuple("ListEntry", ["depth", "number", "content"])
-
-
-class ListCounter(object):
-    def __init__(self, start):
-        self.current = start
-
-    def __next__(self):
-        current = self.current
-        if current is not None:
-            self.current += 1
-        return current
-
-
 class TeamsChangeLogRenderer(HtmlRenderer):
-    def __init__(self, version: str, *extras):
+    """Renderer for changelogs in the format used by Microsoft Teams."""
+
+    def __init__(self, version: str, *extras: object) -> None:
+        """Create a TeamsChangeLogRenderer for the given version."""
         super().__init__(*extras)
         self.version = version
-        self.diff_url = None
-        self.sections: List[Dict[str, str]] = []
+        self.diff_url: Optional[str] = None
+        self.sections: list[dict[str, str]] = []
 
-    def __exit__(self, *args):
+    def __exit__(self, *args: object) -> None:
+        """Override the __exit__ method to reset the diff_url."""
         super().__exit__(*args)
         self.diff_url = None
 
-    def render_to_plaintext(self, token):
-        if token.children is not None:
-            rendered = [self.render_to_plaintext(child) for child in token.children]
-            return "".join(rendered)
-        else:
-            return token.content
+    def render_document(self, token: block_token.Document) -> str:
+        """Override the render_document method to only render the section for the given version."""
+        rendered = render_block_document(self.version, token, self.render)
+        self.sections = [{"text": section} for section in rendered.rendered]
+        self.diff_url = rendered.diff_url
+        return "".join(rendered.rendered)
 
-    def render_document(self, token):
-        to_render = []
-        rendering = False
-
-        for child in token.children:
-            if child.__class__.__name__ == "Heading" and child.level == 2:
-                # Get the text of the first child of this heading. This should be the
-                # version number, or "Unreleased".
-                heading_text = self.render_to_plaintext(child.children[0])
-
-                # Only render things under the right level 2 heading.
-                if heading_text == self.version:
-                    rendering = True
-                    if child.children[0].__class__.__name__ == "Link":
-                        self.diff_url = child.children[0].target
-
-                else:
-                    rendering = False
-
-            if rendering:
-                to_render.append(child)
-            else:
-                log.debug("Not rendering %s", child)
-
-        if to_render and to_render[-1].__class__.__name__ == "Heading":
-            # The last field is a heading. Headings on their own are usually because
-            # people haven't deleted the Changed or Added heading. Rather than render
-            # this, let's just delete it.
-            log.warning(
-                "Deleting empty heading as is the last field: %s",
-                self.render_to_plaintext(to_render[-1]),
-            )
-            to_render.pop()
-
-        log.debug("Document contents %r", to_render)
-
-        rendered = [self.render(child) for child in to_render]
-
-        # Store the rendered children as sections
-        self.sections = [{"text": section} for section in rendered]
-
-        return "".join(rendered)
-
-    def render(self, token):
+    def render(self, token: token.Token) -> str:
+        """Override the render method to add debug logging."""
         ret = self.render_map[token.__class__.__name__](token)
         log.debug("Rendering %r returns %r", token, ret)
         return ret
