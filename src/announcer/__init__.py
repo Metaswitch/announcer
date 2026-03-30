@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Copyright (c) Alianza, Inc. All rights reserved.
-"""A tool for announcing keepachangelog format logs to Slack and Microsoft
-Teams channels"""
+"""A tool for announcing keepachangelog format logs to Slack and Microsoft Teams channels"""
 
 import argparse
 import json
@@ -10,16 +9,17 @@ import logging
 import re
 import sys
 from enum import Enum
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-import mistletoe
 import requests
-from mistletoe.base_renderer import BaseRenderer
+from mistletoe.block_token import Document
 
 from .changelogrenderer import ChangeLogRenderer
 from .teamschangelogrenderer import TeamsChangeLogRenderer
 
 log = logging.getLogger(__name__)
+
+ValidRenderers = Union[ChangeLogRenderer, TeamsChangeLogRenderer]
 
 
 DIFF_URL_RE = re.compile("^(.*)/compare/[^/]+[.][.][.]([^/]+)$")
@@ -29,6 +29,7 @@ TREE_URL_RE = re.compile("^(.*)/tree/([^/]+)$")
 def derive_urls(
     diff_url: Optional[str],
 ) -> Tuple[Optional[str], Optional[str]]:
+    """Derive base and reference URLs from a GitHub compare or tree URL."""
     base_url = None
     reference = None
     if diff_url:
@@ -44,10 +45,13 @@ def derive_urls(
 
 
 class TargetTypes(Enum):
+    """Supported announcement targets."""
+
     SLACK = "slack"
     TEAMS = "teams"
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Return the enum value for argparse and logging display."""
         return self.value
 
 
@@ -85,7 +89,7 @@ def announce_slack(
     username: Optional[str] = None,
     icon_url: Optional[str] = None,
     icon_emoji: Optional[str] = None,
-):
+) -> None:
     """Announce changelog changes to Slack"""
     # Get the changelog
     log.info("Querying changelog %s", changelogfile)
@@ -166,7 +170,7 @@ def announce_teams(
     changelogfile: str,
     projectname: str,
     compatibility_teams_sections: bool,
-):
+) -> None:
     """Announce changelog changes to Teams"""
     # Get the changelog
     log.info("Querying changelog %s", changelogfile)
@@ -251,15 +255,19 @@ def announce_teams(
 
 
 class Changelog(object):
-    def __init__(self, filename: str, renderer_class: type[BaseRenderer]) -> None:
+    """Helper for loading and rendering changelog sections."""
+
+    def __init__(self, filename: str, renderer_class: type[ValidRenderers]) -> None:
+        """Create a changelog reader bound to a renderer implementation."""
         self.filename = filename
         self.renderer_class = renderer_class
 
     def get_version_details(
         self, version: str
     ) -> Tuple[str, Optional[str], List[Dict[str, str]]]:
+        """Render and return details for a specific changelog version."""
         with open(self.filename, "r") as f:
-            document = mistletoe.Document(f)
+            document = Document(f)
 
             with self.renderer_class(version) as renderer:
                 rendered = renderer.render(document)
@@ -270,9 +278,8 @@ class Changelog(object):
         return rendered, diff_url, sections
 
 
-def main():
+def main() -> None:
     """Main handling function."""
-
     # Run main script.
     parser = argparse.ArgumentParser(
         description="Announce CHANGELOG changes on Slack and Microsoft Teams"

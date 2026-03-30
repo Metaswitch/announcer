@@ -11,6 +11,8 @@ version number is tracked in the file `pyproject.toml`.
 ### Breaking Changes
 
 ### Added
+- Add `ruff` for linting instead of flake8 and isort
+  - Fix up associated errors
 
 ### Fixed
 

@@ -79,8 +79,8 @@ Ready to contribute? Here's how to set up `announcer` for local development.
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the
-   tests using tox.
+5. When you're done making changes, check that your changes pass Ruff and the
+    tests using tox.
 
     ```shell
     $ tox
@@ -104,7 +104,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
-3. The pull request should work for Python >=3.7.
+3. The pull request should work for Python >=3.10.
 
 ## Tips
 
