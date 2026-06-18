@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '${{ matrix.python-version }}'
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: bash install.sh
       - run: bash test.sh
         env:
