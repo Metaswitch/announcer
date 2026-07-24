@@ -1,4 +1,9 @@
 # Copyright (c) Alianza, Inc. All rights reserved.
+include = [
+    "src/**/*.py",
+    "tests/**/*.py",
+]
+
 exclude = [
     ".venv",
     "__pycache__",
