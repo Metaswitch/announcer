@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) Metaswitch Networks.
 """Common functionality for all renderers."""
 
@@ -7,7 +5,7 @@ import logging
 from collections import namedtuple
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Optional, cast
+from typing import cast
 
 from mistletoe import block_token, span_token, token
 
@@ -20,11 +18,11 @@ log = logging.getLogger(__name__)
 class ListCounter:
     """A simple counter for numbered lists."""
 
-    def __init__(self, start: Optional[int]) -> None:
+    def __init__(self, start: int | None) -> None:
         """Initialise the counter with the given start value."""
         self.current = start
 
-    def __next__(self) -> Optional[int]:
+    def __next__(self) -> int | None:
         """Return the current value and increment the counter."""
         current = self.current
         if self.current is not None:
@@ -38,7 +36,7 @@ def render_to_plaintext(token: token.Token) -> str:
         rendered = [render_to_plaintext(child) for child in token.children]
         return "".join(rendered)
     elif hasattr(token, "content"):
-        return getattr(token, "content")
+        return token.content
     else:
         return ""
 
@@ -58,7 +56,7 @@ def render_block_document(
 ) -> DocumentRender:
     """Render a document token to plain text, only rendering the section for the given version."""
     to_render = []
-    diff_url: Optional[str] = None
+    diff_url: str | None = None
     rendering = False
 
     if token.children:
@@ -68,7 +66,7 @@ def render_block_document(
                 if heading.level == 2 and heading.children is not None:
                     # Get the text of the first child of this heading. This should be the
                     # version number, or "Unreleased".
-                    first_child = list(heading.children)[0]
+                    first_child = next(iter(heading.children))
                     heading_text = render_to_plaintext(first_child)
 
                     # Only render things under the right level 2 heading.

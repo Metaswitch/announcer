@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (c) Alianza, Inc. All rights reserved.
 """A tool for announcing keepachangelog format logs to Slack and Microsoft Teams channels"""
 
@@ -9,7 +7,7 @@ import logging
 import re
 import sys
 from enum import Enum
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 
 import requests
 from mistletoe.block_token import Document
@@ -19,7 +17,7 @@ from .teamschangelogrenderer import TeamsChangeLogRenderer
 
 log = logging.getLogger(__name__)
 
-ValidRenderers = Union[ChangeLogRenderer, TeamsChangeLogRenderer]
+ValidRenderers = ChangeLogRenderer | TeamsChangeLogRenderer
 
 
 DIFF_URL_RE = re.compile("^(.*)/compare/[^/]+[.][.][.]([^/]+)$")
@@ -27,8 +25,8 @@ TREE_URL_RE = re.compile("^(.*)/tree/([^/]+)$")
 
 
 def derive_urls(
-    diff_url: Optional[str],
-) -> Tuple[Optional[str], Optional[str]]:
+    diff_url: str | None,
+) -> tuple[str | None, str | None]:
     """Derive base and reference URLs from a GitHub compare or tree URL."""
     base_url = None
     reference = None
@@ -78,7 +76,7 @@ def announce(args: argparse.Namespace) -> None:
             args.compatibility_teams_sections,
         )
     else:
-        raise ValueError("Unknown target! {}".format(args.target))
+        raise ValueError(f"Unknown target! {args.target}")
 
 
 def announce_slack(
@@ -86,9 +84,9 @@ def announce_slack(
     changelogversion: str,
     changelogfile: str,
     projectname: str,
-    username: Optional[str] = None,
-    icon_url: Optional[str] = None,
-    icon_emoji: Optional[str] = None,
+    username: str | None = None,
+    icon_url: str | None = None,
+    icon_emoji: str | None = None,
 ) -> None:
     """Announce changelog changes to Slack"""
     # Get the changelog
@@ -97,7 +95,7 @@ def announce_slack(
 
     # Get the version information
     log.info("Getting version %s info from changelog", changelogversion)
-    (changelog_info, diff_url, sections) = changelog.get_version_details(
+    (changelog_info, diff_url, _sections) = changelog.get_version_details(
         changelogversion
     )
 
@@ -110,12 +108,12 @@ def announce_slack(
     log.debug("Base URL: %s; Reference %s", base_url, reference)
 
     # Make a message attachment.
-    pretext = ["*{0} {1}*".format(projectname, changelogversion)]
+    pretext = [f"*{projectname} {changelogversion}*"]
 
     if base_url:
-        pretext.append("({0})".format(base_url))
+        pretext.append(f"({base_url})")
 
-    attachments: List[Dict[str, Any]] = [
+    attachments: list[dict[str, Any]] = [
         {"color": "good", "pretext": " ".join(pretext), "text": changelog_info}
     ]
 
@@ -124,13 +122,13 @@ def announce_slack(
 
     if diff_url:
         # Add a button to view the changes at the diff URL
-        fallback.append("View changes at {0}".format(diff_url))
+        fallback.append(f"View changes at {diff_url}")
         actions.append({"type": "button", "text": "View Changes", "url": diff_url})
 
     if base_url:
         # Add a button to view the CHANGELOG.md.
-        changelog_url = "{0}/blob/{1}/CHANGELOG.md".format(base_url, reference)
-        fallback.append("View CHANGELOG.md at {0}".format(changelog_url))
+        changelog_url = f"{base_url}/blob/{reference}/CHANGELOG.md"
+        fallback.append(f"View CHANGELOG.md at {changelog_url}")
         actions.append(
             {"type": "button", "text": "View CHANGELOG.md", "url": changelog_url}
         )
@@ -141,7 +139,7 @@ def announce_slack(
         )
 
     # Construct the data to send to the endpoint.
-    message_data: Dict[str, Any] = {"attachments": attachments}
+    message_data: dict[str, Any] = {"attachments": attachments}
 
     if username:
         message_data["username"] = username
@@ -150,7 +148,7 @@ def announce_slack(
         message_data["icon_url"] = icon_url
     elif icon_emoji:
         # Wrap the emoji name in colons to use that emoji
-        message_data["icon_emoji"] = ":{}:".format(icon_emoji)
+        message_data["icon_emoji"] = f":{icon_emoji}:"
 
     log.debug("Sending info %s", message_data)
 
@@ -209,7 +207,7 @@ def announce_teams(
 
     if base_url:
         # Add a button to view the CHANGELOG.md.
-        changelog_url = "{0}/blob/{1}/CHANGELOG.md".format(base_url, reference)
+        changelog_url = f"{base_url}/blob/{reference}/CHANGELOG.md"
         actions.append(
             {
                 "@type": "OpenUri",
@@ -234,8 +232,8 @@ def announce_teams(
     message_data = {
         "@type": "MessageCard",
         "@context": "https://schema.org/extensions",
-        "summary": "{0} {1}".format(projectname, changelogversion),
-        "title": "{0} {1}".format(projectname, changelogversion),
+        "summary": f"{projectname} {changelogversion}",
+        "title": f"{projectname} {changelogversion}",
         "sections": sections,
     }
 
@@ -254,7 +252,7 @@ def announce_teams(
     r.raise_for_status()
 
 
-class Changelog(object):
+class Changelog:
     """Helper for loading and rendering changelog sections."""
 
     def __init__(self, filename: str, renderer_class: type[ValidRenderers]) -> None:
@@ -264,7 +262,7 @@ class Changelog(object):
 
     def get_version_details(
         self, version: str
-    ) -> Tuple[str, Optional[str], List[Dict[str, str]]]:
+    ) -> tuple[str, str | None, list[dict[str, str]]]:
         """Render and return details for a specific changelog version."""
         with open(self.filename, "r") as f:
             document = Document(f)
@@ -378,9 +376,9 @@ def main() -> None:
 
     try:
         announce(args)
-    except Exception as e:
-        log.exception(e)
-        raise e
+    except Exception:
+        log.exception("Announcement failed")
+        raise
 
 
 if __name__ == "__main__":

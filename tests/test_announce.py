@@ -5,7 +5,7 @@ import json
 import os
 import sys
 from argparse import Namespace
-from typing import Callable, Optional
+from collections.abc import Callable
 from unittest.mock import patch
 
 from pytest_httpserver import HTTPServer
@@ -68,14 +68,14 @@ TESTANNOUNCE1_ATTACHMENTS = [
 
 
 def make_args(
-    webhook: Optional[str] = None,
-    changelogversion: Optional[str] = None,
-    changelogfile: Optional[str] = None,
-    projectname: Optional[str] = None,
-    username: Optional[str] = None,
+    webhook: str | None = None,
+    changelogversion: str | None = None,
+    changelogfile: str | None = None,
+    projectname: str | None = None,
+    username: str | None = None,
     target: announcer.TargetTypes = announcer.TargetTypes.SLACK,
-    iconurl: Optional[str] = None,
-    iconemoji: Optional[str] = None,
+    iconurl: str | None = None,
+    iconemoji: str | None = None,
     compatibility_teams_sections: bool = False,
 ) -> Namespace:
     """Make a Namespace with the given arguments."""
@@ -120,7 +120,7 @@ def test_announce_party_parrot(httpserver: HTTPServer) -> None:
     httpserver.expect_request("/slack").respond_with_handler(
         verify_dict(
             {
-                "icon_emoji": ":{0}:".format(icon_emoji),
+                "icon_emoji": f":{icon_emoji}:",
                 "attachments": TESTANNOUNCE1_ATTACHMENTS,
                 "username": username,
             }

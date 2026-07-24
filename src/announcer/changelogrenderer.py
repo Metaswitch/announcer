@@ -1,11 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) Metaswitch Networks.
 """ChangeLogRenderer for mistletoe for rendering changelogs to Slack's markdown format."""
 
 import html
 import logging
-from typing import Optional, cast
+from typing import cast
 
 from mistletoe import block_token, span_token, token
 from mistletoe.base_renderer import BaseRenderer
@@ -27,7 +25,7 @@ class ChangeLogRenderer(BaseRenderer):
         """Create a ChangeLogRenderer."""
         super().__init__(*extras)
         self.version = version
-        self.diff_url: Optional[str] = None
+        self.diff_url: str | None = None
         self.sections: list[dict[str, str]] = []
 
     def __exit__(self, *args: object) -> None:
@@ -49,31 +47,31 @@ class ChangeLogRenderer(BaseRenderer):
 
     def render_strong(self, token: span_token.Strong) -> str:
         """Render strong text as *text*."""
-        return "*{}*".format(self.render_inner(token))
+        return f"*{self.render_inner(token)}*"
 
     def render_emphasis(self, token: span_token.Emphasis) -> str:
         """Render emphasis text as _text_."""
-        return "_{}_".format(self.render_inner(token))
+        return f"_{self.render_inner(token)}_"
 
     def render_inline_code(self, token: span_token.InlineCode) -> str:
         """Render inline code as `code`."""
         if not token.children:
             return ""
 
-        first_child = list(token.children)[0]
+        first_child = next(iter(token.children))
         if hasattr(first_child, "content"):
-            content = getattr(first_child, "content")
-            return "`{}`".format(content)
+            content = first_child.content
+            return f"`{content}`"
         else:
             return ""
 
     def render_strikethrough(self, token: span_token.Strikethrough) -> str:
         """Render strikethrough text as ~text~."""
-        return "~{}~".format(self.render_inner(token))
+        return f"~{self.render_inner(token)}~"
 
     def render_image(self, token: span_token.Image) -> str:
         """Render an image as <src|alt>."""
-        return "<{}|{}>".format(token.src, self.escape_html(token.src))
+        return f"<{token.src}|{self.escape_html(token.src)}>"
 
     def render_link(self, token: span_token.Link) -> str:
         """Render a link as <target|inner>."""
@@ -86,7 +84,7 @@ class ChangeLogRenderer(BaseRenderer):
         """Render an auto link as <target|inner>."""
         template = "<{target}|{inner}>"
         if token.mailto:
-            target = "mailto:{}".format(token.target)
+            target = f"mailto:{token.target}"
         else:
             target = token.target
         inner = self.escape_html(render_to_plaintext(token))
@@ -112,7 +110,7 @@ class ChangeLogRenderer(BaseRenderer):
     def render_quote(self, token: block_token.Quote) -> str:
         """Render a quote as > text."""
         inner = self.render_inner(token)
-        return "> {}\n".format(inner)
+        return f"> {inner}\n"
 
     def render_paragraph(self, token: block_token.Paragraph) -> str:
         """Render a paragraph."""
@@ -123,10 +121,10 @@ class ChangeLogRenderer(BaseRenderer):
         if token.children is None:
             return ""
 
-        first_child = list(token.children)[0]
+        first_child = next(iter(token.children))
         if not hasattr(first_child, "content"):
             return ""
-        content = str(getattr(first_child, "content"))
+        content = str(first_child.content)
         return f"```\n{content}```\n"
 
     def render_list(self, token: block_token.List) -> str:
@@ -138,7 +136,7 @@ class ChangeLogRenderer(BaseRenderer):
     def render_listentry(self, listentry: ListEntry) -> str:
         """Render a list entry."""
         if listentry.number is not None:
-            bullet = "{}.".format(listentry.number)
+            bullet = f"{listentry.number}."
         else:
             if listentry.depth > 0:
                 # Use TRIANGULAR BULLET for subbullets
@@ -149,16 +147,14 @@ class ChangeLogRenderer(BaseRenderer):
 
         leading_spaces = " " * (listentry.depth * 4)
 
-        return "{spaces}{bullet} {content}\n".format(
-            spaces=leading_spaces, bullet=bullet, content=listentry.content
-        )
+        return f"{leading_spaces}{bullet} {listentry.content}\n"
 
     def analyse_list(self, token: block_token.List, depth: int) -> list[ListEntry]:
         """Analyse a list and return a list of ListEntry objects representing the list entries."""
         analysed = []
 
         # token.start is a property, List.start() is a class method.
-        start = cast(Optional[int], token.start)
+        start = cast(int | None, token.start)
 
         counter = ListCounter(start)
         if token.children:

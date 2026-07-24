@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) Metaswitch Networks.
 """TeamsChangeLogRenderer for mistletoe."""
 
 import logging
-from typing import Optional
 
 from mistletoe import block_token, token
 from mistletoe.html_renderer import HtmlRenderer
@@ -21,7 +18,7 @@ class TeamsChangeLogRenderer(HtmlRenderer):
         """Create a TeamsChangeLogRenderer for the given version."""
         super().__init__(*extras)
         self.version = version
-        self.diff_url: Optional[str] = None
+        self.diff_url: str | None = None
         self.sections: list[dict[str, str]] = []
 
     def __exit__(self, *args: object) -> None:
